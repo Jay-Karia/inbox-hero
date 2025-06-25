@@ -55,7 +55,7 @@ export const BackgroundGradient = ({
   return (
     <div
       className={cn(
-        "h-screen w-screen overflow-hidden relative -top-50",
+        "h-[50vh] w-screen overflow-hidden relative -top-50",
         containerClassName
       )}
     >
@@ -80,9 +80,14 @@ export const BackgroundGradient = ({
       <div className={cn("", className)}>{children}</div>
       <div
         className={cn(
-          "gradients-container h-full w-full blur-lg",
+          "gradients-container h-screen w-full blur-lg bottom-0",
           isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]"
         )}
+        style={{
+          position: "absolute",
+          top: "0",
+          bottom: "auto"
+        }}
       >
          <div
           className={cn(
@@ -99,7 +104,7 @@ export const BackgroundGradient = ({
             `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
             `[transform-origin:calc(50%-800px)_calc(50%+800px)]`,
             `animate-fifth`,
-            `opacity-50`
+            `opacity-50`,
           )}
         ></div>
         <div
@@ -108,7 +113,7 @@ export const BackgroundGradient = ({
             `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
             `[transform-origin:calc(50%-800px)_calc(50%+800px)]`,
             `animate-fifth`,
-            `opacity-80`
+            `opacity-80`,
           )}
         ></div>
       </div>
