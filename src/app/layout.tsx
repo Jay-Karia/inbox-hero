@@ -15,7 +15,8 @@ export const metadata: Metadata = {
   icons: [
     {
       rel: "icon",
-      url: "/email.png",
+      url: "/email-mask.png",
+      type: "image/png",
     },
   ],
 };
