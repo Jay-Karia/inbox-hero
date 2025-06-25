@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import {
-  ClerkProvider,
-} from '@clerk/nextjs'
+import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
@@ -19,10 +17,12 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Inbox Hero",
   description: "✉️ Clean your inbox like a hero ",
-  icons: [{
-    rel: "icon",
-    url: "/email.png",
-  }]
+  icons: [
+    {
+      rel: "icon",
+      url: "/email.png",
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -32,12 +32,14 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider
-    appearance={{
-      cssLayerName: 'clerk',
-    }}
+      appearance={{
+        cssLayerName: "clerk",
+      }}
     >
       <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}
+        >
           <Navbar />
           {children}
         </body>

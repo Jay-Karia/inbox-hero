@@ -1,7 +1,9 @@
 import SignIn from "./sign-in";
 
 export default function Navbar() {
-  return <header>
-    <SignIn />
-  </header>
+  return (
+    <header>
+      <SignIn />
+    </header>
+  );
 }
