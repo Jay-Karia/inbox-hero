@@ -3,13 +3,14 @@ import { Button } from "./ui/button";
 
 export default function SignIn(props: {
   className?: string;
+  variant?: "default" | "destructive" | "outline" | "secondary" | "ghost" | "link" | "glass";
 } = {}
 ) {
   return (
     <div>
       <SignedOut>
         <SignInButton mode="modal" className={props.className}>
-          <Button variant={"outline"}>Sign In</Button>
+          <Button variant={props.variant ? props.variant : "outline"}>Sign In</Button>
         </SignInButton>
       </SignedOut>
       <SignedIn>
