@@ -33,7 +33,7 @@ export default function RootLayout({
     >
       <html lang="en" className="dark">
         <body className={`${robotoCondensed} antialiased h-full`}>
-      <Navbar />
+          <Navbar />
           {children}
         </body>
       </html>

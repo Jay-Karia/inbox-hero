@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 export const BackgroundGradient = ({
   gradientBackgroundStart = "rgb(108, 0, 162)",
   gradientBackgroundEnd = "rgb(0, 17, 82)",
-  thirdColor = "100, 220, 255",
-  fifthColor = "180, 180, 50",
+  thirdColor = "0, 197, 255",
+  // thirdColor = "100, 220, 255",
+  fifthColor = "255, 255, 3",
+  // fifthColor = "180, 180, 50",
   pointerColor = "140, 100, 255",
   size = "80%",
   blendingValue = "hard-light",
@@ -53,7 +55,7 @@ export const BackgroundGradient = ({
   return (
     <div
       className={cn(
-        "h-screen w-screen overflow-hidden absolute mt-[1050px]",
+        "h-screen w-screen overflow-hidden relative -top-50",
         containerClassName
       )}
     >
@@ -88,16 +90,16 @@ export const BackgroundGradient = ({
             `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
             `[transform-origin:calc(50%+400px)]`,
             `animate-third`,
-            `opacity-100`
+            `opacity-100`,
           )}
         ></div>
         <div
           className={cn(
-            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--fifth-color),_0.8)_0,_rgba(var(--fifth-color),_0)_30%)_no-repeat]`,
+            `absolute [background:radial-gradient(circle_at_center,_rgba(var(--fifth-color),_0.8)_0,_rgba(var(--fifth-color),_0)_45%)_no-repeat]`,
             `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
             `[transform-origin:calc(50%-800px)_calc(50%+800px)]`,
             `animate-fifth`,
-            `opacity-100`
+            `opacity-50`
           )}
         ></div>
         <div
@@ -106,7 +108,7 @@ export const BackgroundGradient = ({
             `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
             `[transform-origin:calc(50%-800px)_calc(50%+800px)]`,
             `animate-fifth`,
-            `opacity-100`
+            `opacity-80`
           )}
         ></div>
       </div>

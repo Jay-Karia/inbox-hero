@@ -17,6 +17,10 @@ import { useState } from "react";
 export default function Navbar() {
   const navItems = [
     {
+      name: "Home",
+      link: "/",
+    },
+    {
       name: "Dashboard",
       link: "dashboard",
     },
@@ -74,8 +78,6 @@ export default function Navbar() {
           </MobileNavMenu>
         </MobileNav>
       </ResizableNavbar>
-
-      {/* Navbar */}
     </div>
   );
 }
