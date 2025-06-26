@@ -2,12 +2,12 @@ import Image from "next/image";
 
 export default function Logo() {
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex gap-2 justify-center items-center">
         <Image
-          src="/email-mask.png"
+          src="/logo.png"
           alt="Logo"
-          width={40}
-          height={40}
+          width={30}
+          height={30}
           className="relative z-10"
         />
       <span className="font-bold text-lg tracking-tight text-white">
