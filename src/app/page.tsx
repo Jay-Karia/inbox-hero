@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <SignedOut>
-        <div className="p-4 flex justify-center items-center flex-col gap-8">
+        <div className="p-4 flex items-center flex-col gap-8 h-full">
           <h1 className="scroll-m-20 text-center text-5xl/16 font-extrabold tracking-tighter text-balance mt-18 animate-fade-in-up text-zinc-200">
             Clean your{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-600 animate-bounce">
@@ -27,28 +27,32 @@ export default function Home() {
             Inbox Hero turns email overload into a fast-paced, focused mission.
             Triage one email at a time with a timer, and make quick decisions.
           </p>
-          <div className="flex gap-4 mt-4 z-10">
-            <Button variant="default" asChild>
-              <Link
-                href="https://github.com/Jay-Karia/inbox-hero"
-                target="_blank"
-              >
-                <FaGithub className="inline" />
-                GitHub
-              </Link>
-            </Button>
-            <SignIn variant="glass" />
-          </div>
-          <BackgroundGradient className="flex justify-center items-center">
-            <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center">
-              <div className="border bg-gray-300 rounded-lg w-[50%] h-2/3 absolute bottom-0"></div>
+
+          {/* Position relative container for buttons and background */}
+          <div className="relative w-full flex justify-center mt-4">
+            {/* Background gradient positioned behind buttons */}
+            <div className="absolute inset-0 -z-10 h-40 -mt-10">
+              <BackgroundGradient />
             </div>
-          </BackgroundGradient>
+
+            {/* Buttons with higher z-index */}
+            <div className="flex gap-4 z-10">
+              <Button variant="default" asChild>
+                <Link
+                  href="https://github.com/Jay-Karia/inbox-hero"
+                  target="_blank"
+                >
+                  <FaGithub className="inline mr-2" />
+                  GitHub
+                </Link>
+              </Button>
+              <SignIn variant="glass" />
+            </div>
+          </div>
+          <div className="border bg-gray-300 rounded-lg w-1/2 h-[40%]"></div>
         </div>
       </SignedOut>
-      <SignedIn>
-        Hello there!
-      </SignedIn>
+      <SignedIn>Hello there!</SignedIn>
     </>
   );
 }

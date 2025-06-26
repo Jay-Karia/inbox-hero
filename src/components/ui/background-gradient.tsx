@@ -53,11 +53,11 @@ export const BackgroundGradient = ({
   return (
     <div
       className={cn(
-        "h-[60vh] w-screen overflow-hidden relative -top-50",
+        "h-full w-screen overflow-hidden relative",
         containerClassName
       )}
     >
-      <svg>
+      <svg className="hidden">
         <defs>
           <filter id="blurMe">
             <feGaussianBlur
@@ -75,16 +75,15 @@ export const BackgroundGradient = ({
           </filter>
         </defs>
       </svg>
-      <div className={cn("", className)}>{children}</div>
+      <div className={cn("relative z-10", className)}>{children}</div>
       <div
         className={cn(
-          "gradients-container h-screen w-full blur-lg bottom-0",
+          "gradients-container h-full w-full blur-lg",
           isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]"
         )}
         style={{
           position: "absolute",
-          top: "0",
-          bottom: "auto"
+          inset: "0",
         }}
       >
          <div
