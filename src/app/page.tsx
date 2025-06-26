@@ -49,7 +49,7 @@ export default function Home() {
               <SignIn variant="glass" />
             </div>
           </div>
-        <div className="border bg-gray-300 rounded-lg max-w-[1000px] w-1/2 min-h-[250px] md:max-h-[400px] lg:max-h-[600px] h-[350px]"></div>
+        <div className="border bg-gray-300 rounded-lg min-w-[700px] max-w-[1000px] w-1/2 min-h-[200px] md:max-h-[350px] lg:max-h-[600px] h-[400px]"></div>
         </div>
       </SignedOut>
       <SignedIn>Hello there!</SignedIn>
