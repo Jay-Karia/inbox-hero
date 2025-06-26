@@ -44,7 +44,7 @@ export default function Navbar() {
             <NavbarButton variant="secondary">
               <SignIn />
             </NavbarButton>
-            <NavbarButton variant="primary">
+            <NavbarButton variant="primary" className="flex items-center">
               <GoHeartFill className="inline mr-1 text-red-500" />
               Donate
             </NavbarButton>

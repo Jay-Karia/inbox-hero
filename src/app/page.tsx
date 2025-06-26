@@ -9,13 +9,13 @@ export default function Home() {
     <div className="p-4 flex justify-center items-center flex-col gap-8">
       <h1 className="scroll-m-20 text-center text-5xl/16 font-extrabold tracking-tighter text-balance mt-18 animate-fade-in-up text-zinc-200">
         Conquer your{" "}
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-600 animate-none">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-600 animate-bounce">
           inbox
         </span>
         .
         <br />
         Become the{" "}
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-600 animate-none">
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-600 animate-bounce">
           hero
         </span>{" "}
         of your day.

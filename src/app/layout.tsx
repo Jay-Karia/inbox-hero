@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
-import { Roboto_Condensed } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 
-const robotoCondensed = Roboto_Condensed({
-  variable: "--font-roboto-condensed",
-  subsets: ["latin"],
+const robotoCondensed = localFont({
+  src: "../fonts/Roboto_Condensed/static/RobotoCondensed-Regular.ttf"
 });
 
 export const metadata: Metadata = {
