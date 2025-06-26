@@ -53,7 +53,7 @@ export const BackgroundGradient = ({
   return (
     <div
       className={cn(
-        "h-full w-screen overflow-hidden relative",
+        "h-full w-full max-w-[2000px] mx-auto overflow-hidden relative",
         containerClassName
       )}
     >
@@ -78,7 +78,7 @@ export const BackgroundGradient = ({
       <div className={cn("relative z-10", className)}>{children}</div>
       <div
         className={cn(
-          "gradients-container h-full w-full blur-lg",
+          "gradients-container h-full w-full blur-lg flex justify-center items-center",
           isSafari ? "blur-2xl" : "[filter:url(#blurMe)_blur(40px)]"
         )}
         style={{
