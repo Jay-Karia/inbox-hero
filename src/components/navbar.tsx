@@ -44,8 +44,8 @@ export default function Navbar() {
             <NavbarButton variant="secondary">
               <SignIn />
             </NavbarButton>
-            <NavbarButton variant="primary" className="flex items-center">
-              <GoHeartFill className="inline mr-1 text-red-500" />
+            <NavbarButton variant="donate" className="flex items-center">
+              <GoHeartFill className="inline mr-1" />
               Donate
             </NavbarButton>
           </div>
@@ -77,8 +77,8 @@ export default function Navbar() {
             ))}
             <div className="flex w-full flex-col gap-4">
               <SignIn className="w-full" />
-              <NavbarButton variant="primary">
-                <GoHeartFill className="inline mr-1 text-red-500" />
+              <NavbarButton variant="donate">
+                <GoHeartFill className="inline mr-1" />
                 Donate
               </NavbarButton>
             </div>
