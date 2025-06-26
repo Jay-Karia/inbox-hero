@@ -6,8 +6,8 @@ export default function Logo() {
         <Image
           src="/email-mask.png"
           alt="Logo"
-          width={48}
-          height={48}
+          width={40}
+          height={40}
           className="relative z-10"
         />
       <span className="font-bold text-lg tracking-tight text-white">
