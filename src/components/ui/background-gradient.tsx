@@ -6,11 +6,9 @@ export const BackgroundGradient = ({
   gradientBackgroundStart = "rgb(108, 0, 162)",
   gradientBackgroundEnd = "rgb(0, 17, 82)",
   thirdColor = "0, 197, 255",
-  // thirdColor = "100, 220, 255",
   fifthColor = "255, 255, 3",
-  // fifthColor = "180, 180, 50",
   pointerColor = "140, 100, 255",
-  size = "80%",
+  size = "85%",
   blendingValue = "hard-light",
   children,
   className,
@@ -55,11 +53,11 @@ export const BackgroundGradient = ({
   return (
     <div
       className={cn(
-        "h-[50vh] w-screen overflow-hidden relative -top-50",
+        "h-[60vh] w-screen overflow-hidden relative -top-50",
         containerClassName
       )}
     >
-      <svg className="hidden">
+      <svg>
         <defs>
           <filter id="blurMe">
             <feGaussianBlur

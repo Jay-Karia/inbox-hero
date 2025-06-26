@@ -24,7 +24,7 @@ export default function Home() {
         Inbox Hero turns email overload into a fast-paced, focused mission.
         Triage one email at a time with a timer, and make quick decisions.
       </p>
-        <div className="flex gap-4 mt-4 z-10">
+        <div className="flex gap-4 mt-4">
           <Button variant="default" asChild>
             <Link
               href="https://github.com/Jay-Karia/inbox-hero"
@@ -36,11 +36,11 @@ export default function Home() {
           </Button>
           <SignIn variant="glass" />
         </div>
-      <BackgroundGradient className="flex justify-center items-center">
-        <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center ">
-          {/* <div className="border bg-gray-300 rounded-lg w-1/2 h-2/3 absolute top-50 "></div> */}
-        </div>
-      </BackgroundGradient>
+        <BackgroundGradient className="flex justify-center items-center">
+          <div className="absolute z-50 inset-0 flex items-center justify-center text-white font-bold px-4 pointer-events-none text-3xl text-center">
+            <div className="border bg-gray-300 rounded-lg w-[45%] h-2/3 absolute bottom-0"></div>
+          </div>
+        </BackgroundGradient>
     </div>
   );
 }
