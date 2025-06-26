@@ -31,12 +31,12 @@ export default function Home() {
           {/* Position relative container for buttons and background */}
           <div className="relative w-full flex justify-center mt-4">
             {/* Background gradient positioned behind buttons */}
-            <div className="absolute inset-0 -z-10 h-40 -mt-10">
+            <div className="absolute inset-0 -z-10 h-40 -mt-10 overflow-visible">
               <BackgroundGradient />
             </div>
 
             {/* Buttons with higher z-index */}
-            <div className="flex gap-4 z-10">
+            <div className="flex gap-4 z-10 overflow-visible">
               <Button variant="default" asChild>
                 <Link
                   href="https://github.com/Jay-Karia/inbox-hero"

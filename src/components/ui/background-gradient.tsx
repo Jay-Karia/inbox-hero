@@ -43,7 +43,15 @@ export const BackgroundGradient = ({
     document.body.style.setProperty("--pointer-color", pointerColor);
     document.body.style.setProperty("--size", size);
     document.body.style.setProperty("--blending-value", blendingValue);
-  }, [blendingValue, fifthColor, gradientBackgroundEnd, gradientBackgroundStart, pointerColor, size, thirdColor]);
+  }, [
+    blendingValue,
+    fifthColor,
+    gradientBackgroundEnd,
+    gradientBackgroundStart,
+    pointerColor,
+    size,
+    thirdColor,
+  ]);
 
   const [isSafari, setIsSafari] = useState(false);
   useEffect(() => {
@@ -53,11 +61,11 @@ export const BackgroundGradient = ({
   return (
     <div
       className={cn(
-        "h-full w-full max-w-[2000px] mx-auto overflow-hidden relative",
+        "h-full w-full max-w-[2000px] mx-auto relative overflow-hidden",
         containerClassName
       )}
     >
-      <svg className="hidden">
+      <svg>
         <defs>
           <filter id="blurMe">
             <feGaussianBlur
@@ -86,31 +94,31 @@ export const BackgroundGradient = ({
           inset: "0",
         }}
       >
-         <div
+        <div
           className={cn(
             `absolute [background:radial-gradient(circle_at_center,_rgba(var(--third-color),_0.8)_0,_rgba(var(--third-color),_0)_50%)_no-repeat]`,
-            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(100%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
             `[transform-origin:calc(50%+400px)]`,
             `animate-third`,
-            `opacity-100`,
+            `opacity-100 overflow-visible`
           )}
         ></div>
         <div
           className={cn(
             `absolute [background:radial-gradient(circle_at_center,_rgba(var(--fifth-color),_0.8)_0,_rgba(var(--fifth-color),_0)_45%)_no-repeat]`,
-            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] border top-[calc(100%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
             `[transform-origin:calc(50%-800px)_calc(50%+800px)]`,
             `animate-fifth`,
-            `opacity-50`,
+            `opacity-50 overflow-visible`
           )}
         ></div>
         <div
           className={cn(
             `absolute [background:radial-gradient(circle_at_center,_rgba(var(--fifth-color),_0.8)_0,_rgba(var(--fifth-color),_0)_40%)_no-repeat]`,
-            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(50%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
+            `[mix-blend-mode:var(--blending-value)] w-[var(--size)] h-[var(--size)] top-[calc(100%-var(--size)/2)] left-[calc(50%-var(--size)/2)]`,
             `[transform-origin:calc(50%-800px)_calc(50%+800px)]`,
             `animate-fifth`,
-            `opacity-80`,
+            `opacity-80 overflow-visible`
           )}
         ></div>
       </div>
