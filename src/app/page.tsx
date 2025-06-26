@@ -23,7 +23,7 @@ export default function Home() {
             </span>{" "}
             stress.
           </h1>
-          <p className="text-center text-muted-foreground text-md w-1/3">
+          <p className="text-center text-muted-foreground text-md w-1/3 z-10">
             Inbox Hero turns email overload into a fast-paced, focused mission.
             Triage one email at a time with a timer, and make quick decisions.
           </p>
