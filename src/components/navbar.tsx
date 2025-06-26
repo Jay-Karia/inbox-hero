@@ -13,6 +13,7 @@ import {
   NavbarButton,
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
+import { GoHeartFill } from "react-icons/go";
 
 export default function Navbar() {
   const navItems = [
@@ -43,7 +44,10 @@ export default function Navbar() {
             <NavbarButton variant="secondary">
               <SignIn />
             </NavbarButton>
-            <NavbarButton variant="primary">Donate</NavbarButton>
+            <NavbarButton variant="primary">
+              <GoHeartFill className="inline mr-1 text-red-500" />
+              Donate
+            </NavbarButton>
           </div>
         </NavBody>
 
@@ -73,7 +77,10 @@ export default function Navbar() {
             ))}
             <div className="flex w-full flex-col gap-4">
               <SignIn className="w-full" />
-              <NavbarButton variant="primary">Donate</NavbarButton>
+              <NavbarButton variant="primary">
+                <GoHeartFill className="inline mr-1 text-red-500" />
+                Donate
+              </NavbarButton>
             </div>
           </MobileNavMenu>
         </MobileNav>

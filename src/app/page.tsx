@@ -24,7 +24,7 @@ export default function Home() {
         Inbox Hero turns email overload into a fast-paced, focused mission.
         Triage one email at a time with a timer, and make quick decisions.
       </p>
-        <div className="flex gap-4 mt-4">
+        <div className="flex gap-4 mt-4 z-10">
           <Button variant="default" asChild>
             <Link
               href="https://github.com/Jay-Karia/inbox-hero"
