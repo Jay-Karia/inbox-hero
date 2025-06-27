@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Logo() {
   return (
-    <div className="flex gap-2 justify-center items-center">
+    <div className="flex gap-2 justify-center items-center cursor-pointer">
         <Image
           src="/logo-trans.png"
           alt="Logo"
