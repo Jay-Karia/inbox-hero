@@ -42,7 +42,7 @@ export default function Home() {
                   href="https://github.com/Jay-Karia/inbox-hero"
                   target="_blank"
                 >
-                  <FaGithub className="inline mr-2" />
+                  <FaGithub className="inline" />
                   GitHub
                 </Link>
               </Button>
