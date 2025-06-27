@@ -42,3 +42,5 @@ next-env.d.ts
 
 # Google API credentials
 google-oauth.json
+
+/generated/prisma
