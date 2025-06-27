@@ -49,7 +49,9 @@ export default function Home() {
               <SignUp variant="glass" />
             </div>
           </div>
-        <div className="border bg-gray-300 rounded-lg min-w-[700px] max-w-[1000px] w-1/2 min-h-[200px] md:max-h-[350px] lg:max-h-[600px] h-[400px]"></div>
+        <div className="border border-gray-700 bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-xl shadow-2xl min-w-[700px] max-w-[1000px] w-1/2 min-h-[200px] md:max-h-[350px] lg:max-h-[600px] h-[400px] backdrop-blur-sm ring-1 ring-white/10"></div>
+        {/* <div className="border border-gray-700 bg-gradient-to-br from-gray-900 via-gray-800 to-black rounded-xl shadow-2xl min-w-[700px] max-w-[1000px] w-1/2 min-h-[200px] md:max-h-[350px] lg:max-h-[600px] h-[400px] backdrop-blur-sm ring-1 ring-white/10"></div> */}
+        {/* <div className="border border-gray-800 bg-gradient-to-br from-black via-gray-900 to-gray-950 rounded-xl shadow-2xl min-w-[700px] max-w-[1000px] w-1/2 min-h-[200px] md:max-h-[350px] lg:max-h-[600px] h-[400px] backdrop-blur-sm ring-1 ring-white/5"></div> */}
         </div>
       </SignedOut>
       <SignedIn>Hello there!</SignedIn>
