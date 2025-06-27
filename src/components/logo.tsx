@@ -4,7 +4,7 @@ export default function Logo() {
   return (
     <div className="flex gap-2 justify-center items-center">
         <Image
-          src="/logo.png"
+          src="/logo-trans.png"
           alt="Logo"
           width={30}
           height={30}

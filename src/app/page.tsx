@@ -1,4 +1,4 @@
-import SignIn from "@/components/sign-in";
+import SignUp from "@/components/sign-up";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import { Button } from "@/components/ui/button";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
@@ -46,7 +46,7 @@ export default function Home() {
                   GitHub
                 </Link>
               </Button>
-              <SignIn variant="glass" />
+              <SignUp variant="glass" />
             </div>
           </div>
         <div className="border bg-gray-300 rounded-lg min-w-[700px] max-w-[1000px] w-1/2 min-h-[200px] md:max-h-[350px] lg:max-h-[600px] h-[400px]"></div>
