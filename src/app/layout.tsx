@@ -3,6 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import { dark } from '@clerk/themes'
 
 const robotoCondensed = localFont({
   src: "../fonts/Roboto_Condensed/static/RobotoCondensed-Regular.ttf"
@@ -28,6 +29,7 @@ export default function RootLayout({
     <ClerkProvider
       appearance={{
         cssLayerName: "clerk",
+        baseTheme: dark
       }}
     >
       <html lang="en" className="dark">
