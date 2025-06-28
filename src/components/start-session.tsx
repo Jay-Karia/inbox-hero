@@ -1,6 +1,6 @@
 "use client";
 
-import { FaInbox, FaCheckCircle } from "react-icons/fa";
+import { FaInbox, FaCheckCircle, FaShare } from "react-icons/fa";
 import {
   Card,
   CardContent,
@@ -27,7 +27,10 @@ export default function StartSession(props: StartSessionProps) {
     return rawProgress > 100 ? 100 : rawProgress;
   }
 
-  const mockProgress = calculateProgress(props.mockStats.processedToday, props.mockStats.dailyGoal);
+  const mockProgress = calculateProgress(
+    props.mockStats.processedToday,
+    props.mockStats.dailyGoal
+  );
   const hasUnreadEmails = props.mockStats.unreadEmails > 0;
 
   if (!hasUnreadEmails) {
@@ -44,7 +47,8 @@ export default function StartSession(props: StartSessionProps) {
             🎉 Inbox Zero Achieved!
           </CardTitle>
           <CardDescription className="text-green-100">
-            Congratulations! You&apos;ve cleared all your emails. Take a moment to celebrate this achievement.
+            Congratulations! You&apos;ve cleared all your emails. Take a moment
+            to celebrate this achievement.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -52,7 +56,8 @@ export default function StartSession(props: StartSessionProps) {
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-green-200">
-                Daily Goal - <b>{props.mockStats.processedToday}</b>/{props.mockStats.dailyGoal}
+                Daily Goal - <b>{props.mockStats.processedToday}</b>/
+                {props.mockStats.dailyGoal}
               </span>
               <span className="text-white">{mockProgress}%</span>
             </div>
@@ -78,9 +83,21 @@ export default function StartSession(props: StartSessionProps) {
             <p className="text-green-100 text-sm">
               {mockProgress >= 100
                 ? "Amazing! You've exceeded your daily goal and achieved Inbox Zero!"
-                : `You're ${100 - mockProgress}% away from your daily goal. New emails will help you reach it!`
-              }
+                : `You're ${
+                    100 - mockProgress
+                  }% away from your daily goal. New emails will help you reach it!`}
             </p>
+          </div>
+        </CardContent>
+        <CardContent className="pt-0">
+          <div className="flex justify-end">
+            <Button
+              variant="glass"
+              size="sm"
+            >
+              <FaShare className="mr-1" />
+              Share
+            </Button>
           </div>
         </CardContent>
       </Card>
@@ -98,7 +115,8 @@ export default function StartSession(props: StartSessionProps) {
         <CardDescription className="text-gray-300">
           You have{" "}
           <span className="text-white font-semibold">
-            {props.mockStats.unreadEmails} unread email{props.mockStats.unreadEmails !== 1 ? "s" : ""}
+            {props.mockStats.unreadEmails} unread email
+            {props.mockStats.unreadEmails !== 1 ? "s" : ""}
           </span>{" "}
           waiting to be triaged.
         </CardDescription>
@@ -107,7 +125,8 @@ export default function StartSession(props: StartSessionProps) {
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
             <span className="text-gray-400">
-              Daily Goal - <b>{props.mockStats.processedToday}</b>/{props.mockStats.dailyGoal}
+              Daily Goal - <b>{props.mockStats.processedToday}</b>/
+              {props.mockStats.dailyGoal}
             </span>
             <span className="text-white">{mockProgress}%</span>
           </div>

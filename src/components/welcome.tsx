@@ -10,11 +10,11 @@ import LastSession from "./last-session";
 const mockStats: mockStatsType = {
   totalEmails: 147,
   totalProcessed: 0,
-  unreadEmails:80, // total unread emails at the start of the day
-  processedToday: 0, // emails processed today
+  unreadEmails: 0, // total unread emails at the start of the day
+  processedToday: 10, // emails processed today
   averageTime: 0, // seconds
   streak: 0, // days
-  dailyGoal: 0, // daily goal of emails
+  dailyGoal: 10, // daily goal of emails
 };
 
 export default function Welcome() {
@@ -44,18 +44,13 @@ export default function Welcome() {
 
       {/* Stats Overview */}
       <StatsOverview mockStats={mockStats} />
-
       {/* Main Action Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
         {/* Start Session */}
         <StartSession mockStats={mockStats} />
-
         {/* Last Session */}
         <LastSession />
       </div>
-
-      {/* Achievements Section */}
-
     </div>
   );
 }
