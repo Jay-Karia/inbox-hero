@@ -18,12 +18,16 @@ interface StartSessionProps {
 }
 
 export default function StartSession(props: StartSessionProps) {
-  const mockProgress = Math.round(
-    (props.mockStats.processedToday / props.mockStats.dailyGoal) * 100
-  ) > 100 ? 100 : Math.round(
-    (props.mockStats.processedToday / props.mockStats.dailyGoal) * 100
-  );
+  function calculateProgress(processed: number, goal: number): number {
+    const rawProgress = Math.round((processed / goal) * 100);
 
+    if (goal === 0 && goal >= processed) return 0;
+    if (goal === 0 && goal < processed) return 100;
+
+    return rawProgress > 100 ? 100 : rawProgress;
+  }
+
+  const mockProgress = calculateProgress(props.mockStats.processedToday, props.mockStats.dailyGoal);
   const hasUnreadEmails = props.mockStats.unreadEmails > 0;
 
   if (!hasUnreadEmails) {
