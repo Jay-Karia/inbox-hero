@@ -1,3 +1,5 @@
+"use client";
+
 import { FaClock, FaFire, FaInbox } from "react-icons/fa";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { mockStatsType } from "@/types/data";
