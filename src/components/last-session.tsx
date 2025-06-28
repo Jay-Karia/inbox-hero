@@ -32,7 +32,7 @@ export default function LastSession() {
   ];
 
   // Set to true to test no session state
-  const hasLastSession = false;
+  const hasLastSession = true;
 
   const totalProcessed = mockLastSession.reduce(
     (sum, activity) => sum + activity.count,
@@ -118,14 +118,6 @@ export default function LastSession() {
             </Badge>
           </div>
         ))}
-
-        {/* Session Summary */}
-        <div className="mt-4 pt-3 border-t border-gray-600">
-          <div className="flex justify-between items-center text-sm">
-            <span className="text-gray-400">Session Total</span>
-            <span className="text-white font-bold">{totalProcessed} emails</span>
-          </div>
-        </div>
       </CardContent>
     </Card>
   );
