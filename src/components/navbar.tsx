@@ -32,11 +32,7 @@ export default function Navbar() {
     {
       name: "Triage",
       link: "triage",
-    },
-    {
-      name: "Achievements",
-      link: "achievements",
-    },
+    }
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

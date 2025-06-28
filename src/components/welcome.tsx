@@ -9,11 +9,12 @@ import LastSession from "./last-session";
 // Mock data
 const mockStats: mockStatsType = {
   totalEmails: 147,
+  totalProcessed: 0,
   unreadEmails:80, // total unread emails at the start of the day
-  processedToday: 20, // emails processed today
-  averageTime: 18, // seconds
-  streak: 8, // days
-  dailyGoal: 50, // daily goal of emails
+  processedToday: 0, // emails processed today
+  averageTime: 0, // seconds
+  streak: 0, // days
+  dailyGoal: 0, // daily goal of emails
 };
 
 export default function Welcome() {

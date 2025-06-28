@@ -22,14 +22,13 @@ export default function StatsOverview(props: StatsOverviewProps) {
             </CardHeader>
             <CardContent className="relative z-20">
               <div className="text-2xl font-bold text-white z-20">
-                {props.mockStats.totalEmails}
+                {props.mockStats.totalProcessed}
               </div>
               <p className="text-xs text-blue-300 z-20">
                 +{props.mockStats.processedToday} today
               </p>
             </CardContent>
         </CardSpotlight>
-
 
         <CardSpotlight className="bg-gradient-to-br from-green-900/50 to-green-800/50 border-none p-0 h-max">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 relative z-20">

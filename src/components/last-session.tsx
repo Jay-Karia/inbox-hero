@@ -2,7 +2,9 @@
 
 import { Badge } from "./ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { FaArchive, FaTrash, FaEnvelope, FaClock } from "react-icons/fa";
+import { Button } from "./ui/button";
+import { FaArchive, FaTrash, FaEnvelope, FaClock, FaInbox, FaPlay } from "react-icons/fa";
+import Link from "next/link";
 
 export default function LastSession() {
   const mockLastSession = [
@@ -29,11 +31,58 @@ export default function LastSession() {
     },
   ];
 
+  // Set to true to test no session state
+  const hasLastSession = false;
+
   const totalProcessed = mockLastSession.reduce(
     (sum, activity) => sum + activity.count,
     0
   );
 
+  if (!hasLastSession) {
+    // No Last Session State
+    return (
+      <Card className="bg-gray-900/50 border-gray-700">
+        <CardHeader className="text-center pb-4">
+          <div className="flex justify-center mb-3">
+            <div className="p-4 rounded-full bg-gray-800/50">
+              <FaInbox className="text-gray-400 text-2xl" />
+            </div>
+          </div>
+          <CardTitle className="text-white text-lg">
+            No Sessions Yet
+          </CardTitle>
+          <div className="text-sm text-gray-400">
+            Start your first email triaging session to see your recent activity here.
+          </div>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <Button
+            className="w-full bg-gray-800 hover:bg-gray-700 border border-gray-600 hover:border-gray-500 text-white font-semibold py-3 text-md transition-all duration-200 shadow-lg hover:shadow-xl cursor-pointer"
+            size="lg"
+            asChild
+          >
+            <Link href="/triage">
+              <FaPlay className="mr-2 h-3 w-3" />
+              Start Your First Session
+            </Link>
+          </Button>
+
+          {/* Helpful tips */}
+          <div className="bg-gray-800/30 rounded-lg p-3">
+            <h4 className="text-white text-sm font-medium mb-2">💡 Quick Tips</h4>
+            <ul className="text-gray-400 text-xs space-y-1">
+              <li>• <b>Archive</b> emails you might need later</li>
+              <li>• <b>Delete</b> emails you&apos;ll never need</li>
+              <li>• <b>Reply</b> to urgent messages quickly</li>
+            </ul>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  // Regular Last Session State
   return (
     <Card className="bg-gray-900/50 border-gray-700">
       <CardHeader className="pb-4">
@@ -69,6 +118,14 @@ export default function LastSession() {
             </Badge>
           </div>
         ))}
+
+        {/* Session Summary */}
+        <div className="mt-4 pt-3 border-t border-gray-600">
+          <div className="flex justify-between items-center text-sm">
+            <span className="text-gray-400">Session Total</span>
+            <span className="text-white font-bold">{totalProcessed} emails</span>
+          </div>
+        </div>
       </CardContent>
     </Card>
   );
