@@ -29,6 +29,14 @@ export default function Navbar() {
       name: "Clean Up",
       link: "clean",
     },
+    {
+      name: "Triage",
+      link: "triage",
+    },
+    {
+      name: "Achievements",
+      link: "achievements",
+    },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

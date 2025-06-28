@@ -1,6 +1,5 @@
 "use client";
 import { useUser } from "@clerk/nextjs";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,7 +7,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
 import {
   FaInbox,
@@ -21,18 +19,21 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 import { useState, useEffect } from "react";
+import StartSession from "./start-session";
+import { mockStatsType } from "@/types/data";
 
 // Mock data
-const mockStats = {
+const mockStats: mockStatsType = {
   totalEmails: 147,
-  processedToday: 23,
+  unreadEmails: 0, // total unread emails at the start of the day
+  processedToday: 20, // emails processed today
   averageTime: 18, // seconds
   streak: 7, // days
-  efficiency: 85, // percentage
   totalSaved: 142, // minutes saved this week
+  dailyGoal: 50, // daily goal of emails
 };
 
-const mockRecentActivity = [
+const mockLastSession = [
   {
     action: "Archived",
     count: 12,
@@ -169,45 +170,16 @@ export default function Welcome() {
 
       {/* Main Action Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-        {/* Start Session Card */}
-        <Card className="lg:col-span-2 bg-gradient-to-br from-gray-900 via-gray-800 to-black border-gray-700">
-          <CardHeader>
-            <CardTitle className="text-white text-xl flex items-center gap-2">
-              <FaInbox className="text-blue-400" />
-              Ready for your next session?
-            </CardTitle>
-            <CardDescription className="text-gray-300">
-              You have{" "}
-              <span className="text-white font-semibold">24 unread emails</span>{" "}
-              waiting to be triaged.
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-400">Efficiency Rate</span>
-                <span className="text-white">{mockStats.efficiency}%</span>
-              </div>
-              <Progress value={mockStats.efficiency} className="h-2" />
-            </div>
-            <Button
-              className="w-full bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white font-semibold py-3 text-lg"
-              size="lg"
-            >
-              Start Triaging Emails
-            </Button>
-          </CardContent>
-        </Card>
+        {/* Start Session */}
+        <StartSession mockStats={mockStats} />
 
         {/* Recent Activity */}
         <Card className="bg-gray-900/50 border-gray-700">
           <CardHeader>
-            <CardTitle className="text-white text-lg">
-              Recent Activity
-            </CardTitle>
+            <CardTitle className="text-white text-lg">Last Session</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3">
-            {mockRecentActivity.map((activity, index) => (
+            {mockLastSession.map((activity, index) => (
               <div
                 key={index}
                 className="flex items-center justify-between p-3 rounded-lg bg-gray-800/50"
@@ -218,7 +190,7 @@ export default function Welcome() {
                     <p className="text-white text-sm font-medium">
                       {activity.action}
                     </p>
-                    <p className="text-gray-400 text-xs">{activity.time}</p>
+                    {/* <p className="text-gray-400 text-xs">{activity.time}</p> */}
                   </div>
                 </div>
                 <Badge
