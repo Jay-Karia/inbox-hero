@@ -9,10 +9,8 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import {
-  FaInbox,
   FaArchive,
   FaTrash,
-  FaClock,
   FaTrophy,
   FaFire,
   FaEnvelope,
@@ -21,15 +19,15 @@ import {
 import { useState, useEffect } from "react";
 import StartSession from "./start-session";
 import { mockStatsType } from "@/types/data";
+import StatsOverview from "./stats-overview";
 
 // Mock data
 const mockStats: mockStatsType = {
   totalEmails: 147,
-  unreadEmails: 0, // total unread emails at the start of the day
+  unreadEmails: 80, // total unread emails at the start of the day
   processedToday: 20, // emails processed today
   averageTime: 18, // seconds
-  streak: 7, // days
-  totalSaved: 142, // minutes saved this week
+  streak: 8, // days
   dailyGoal: 50, // daily goal of emails
 };
 
@@ -104,69 +102,7 @@ export default function Welcome() {
       </div>
 
       {/* Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <Card className="bg-gradient-to-br from-blue-900/50 to-blue-800/50 border-blue-700">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-blue-100">
-              Total Processed
-            </CardTitle>
-            <FaInbox className="h-4 w-4 text-blue-400" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-white">
-              {mockStats.totalEmails}
-            </div>
-            <p className="text-xs text-blue-300">
-              +{mockStats.processedToday} today
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-br from-green-900/50 to-green-800/50 border-green-700">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-green-100">
-              Avg. Time
-            </CardTitle>
-            <FaClock className="h-4 w-4 text-green-400" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-white">
-              {mockStats.averageTime}s
-            </div>
-            <p className="text-xs text-green-300">per email</p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-br from-orange-900/50 to-orange-800/50 border-orange-700">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-orange-100">
-              Streak
-            </CardTitle>
-            <FaFire className="h-4 w-4 text-orange-400" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-white">
-              {mockStats.streak} days
-            </div>
-            <p className="text-xs text-orange-300">Keep it up!</p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-br from-purple-900/50 to-purple-800/50 border-purple-700">
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-purple-100">
-              Time Saved
-            </CardTitle>
-            <FaTrophy className="h-4 w-4 text-purple-400" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-white">
-              {mockStats.totalSaved}m
-            </div>
-            <p className="text-xs text-purple-300">this week</p>
-          </CardContent>
-        </Card>
-      </div>
+      <StatsOverview mockStats={mockStats}/>
 
       {/* Main Action Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
