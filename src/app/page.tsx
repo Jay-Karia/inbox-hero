@@ -2,6 +2,7 @@ import Demo from "@/components/demo";
 import SignUp from "@/components/sign-up";
 import { BackgroundGradient } from "@/components/ui/background-gradient";
 import { Button } from "@/components/ui/button";
+import Welcome from "@/components/welcome";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 import { FaGithub } from "react-icons/fa6";
@@ -9,6 +10,7 @@ import { FaGithub } from "react-icons/fa6";
 export default function Home() {
   return (
     <>
+    {/* Landing */}
       <SignedOut>
         <div className="p-4 flex items-center flex-col gap-8 h-max">
           <h1 className="scroll-m-20 text-center text-5xl/16 font-extrabold tracking-tighter text-balance mt-18 animate-fade-in-up text-zinc-200">
@@ -55,7 +57,11 @@ export default function Home() {
           </div>
         </div>
       </SignedOut>
-      <SignedIn>Hello there!</SignedIn>
+
+      {/* Welcome */}
+      <SignedIn>
+        <Welcome />
+      </SignedIn>
     </>
   );
 }
