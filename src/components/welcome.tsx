@@ -2,27 +2,32 @@
 import { useUser } from "@clerk/nextjs";
 import { useState, useEffect } from "react";
 import StartSession from "./start-session";
-import { mockStatsType } from "@/types/data";
 import StatsOverview from "./stats-overview";
 import LastSession from "./last-session";
-
-// Mock data
-const mockStats: mockStatsType = {
-  totalProcessed: 0,
-  unreadEmails: 60, // total unread emails at the start of the day
-  processedToday: 10, // emails processed today
-  averageTime: 0, // seconds
-  streak: 0, // days
-  dailyGoal: 10, // daily goal of emails
-};
+import axios from "axios";
 
 export default function Welcome() {
   const { user } = useUser();
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [stats, setStats] = useState(null);
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const res = axios.get("/api/stats");
+    setLoading(true);
+    res
+      .then((response) => {
+        setStats(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching stats:", error);
+      });
+    setLoading(false);
   }, []);
 
   const getGreeting = () => {
@@ -42,11 +47,13 @@ export default function Welcome() {
       </div>
 
       {/* Stats Overview */}
-      <StatsOverview mockStats={mockStats} />
+      <StatsOverview stats={stats} loading={loading} />
+
       {/* Main Action Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
         {/* Start Session */}
-        <StartSession mockStats={mockStats} />
+        {/* <StartSession stats={stats} /> */}
+
         {/* Last Session */}
         <LastSession />
       </div>

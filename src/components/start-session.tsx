@@ -11,10 +11,9 @@ import {
 import { Progress } from "./ui/progress";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { mockStatsType } from "@/types/data";
 
 interface StartSessionProps {
-  mockStats: mockStatsType;
+  stats: Record<string, any> | null;
 }
 
 export default function StartSession(props: StartSessionProps) {
@@ -28,10 +27,10 @@ export default function StartSession(props: StartSessionProps) {
   }
 
   const mockProgress = calculateProgress(
-    props.mockStats.processedToday,
-    props.mockStats.dailyGoal
+    props.stats.processedToday,
+    props.stats.dailyGoal
   );
-  const hasUnreadEmails = props.mockStats.unreadEmails > 0;
+  const hasUnreadEmails = props.stats.unreadEmails > 0;
 
   if (!hasUnreadEmails) {
     // Inbox Zero State
@@ -56,8 +55,8 @@ export default function StartSession(props: StartSessionProps) {
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-green-200">
-                Daily Goal - <b>{props.mockStats.processedToday}</b>/
-                {props.mockStats.dailyGoal}
+                Daily Goal - <b>{props.stats.processedToday}</b>/
+                {props.stats.dailyGoal}
               </span>
               <span className="text-white">{mockProgress}%</span>
             </div>
@@ -115,8 +114,8 @@ export default function StartSession(props: StartSessionProps) {
         <CardDescription className="text-gray-300">
           You have{" "}
           <span className="text-white font-semibold">
-            {props.mockStats.unreadEmails} unread email
-            {props.mockStats.unreadEmails !== 1 ? "s" : ""}
+            {props.stats.unreadEmails} unread email
+            {props.stats.unreadEmails !== 1 ? "s" : ""}
           </span>{" "}
           waiting to be triaged.
         </CardDescription>
@@ -125,8 +124,8 @@ export default function StartSession(props: StartSessionProps) {
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
             <span className="text-gray-400">
-              Daily Goal - <b>{props.mockStats.processedToday}</b>/
-              {props.mockStats.dailyGoal}
+              Daily Goal - <b>{props.stats.processedToday}</b>/
+              {props.stats.dailyGoal}
             </span>
             <span className="text-white">{mockProgress}%</span>
           </div>
