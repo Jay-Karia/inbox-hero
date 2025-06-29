@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader } from "./card";
+import { Card, CardContent, CardHeader } from "../ui/card";
 
 export default function StatCardSkeleton({
   className,

@@ -11,12 +11,43 @@ import {
 import { Progress } from "./ui/progress";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import StartSessionSkeleton from "./skeleton/start-session";
 
 interface StartSessionProps {
   stats: Record<string, any> | null;
+  loading: boolean;
 }
 
 export default function StartSession(props: StartSessionProps) {
+  // Show skeleton while loading
+  if (props.loading) {
+    return <StartSessionSkeleton />;
+  }
+
+  // Show error state if no stats and not loading
+  if (!props.loading && !props.stats) {
+    return (
+      <Card className="lg:col-span-2 bg-gradient-to-br from-red-900/50 to-red-800/50 border-red-700">
+        <CardHeader className="text-center">
+          <CardTitle className="text-white text-xl">
+            Unable to Load Data
+          </CardTitle>
+          <CardDescription className="text-red-200">
+            Please refresh the page to try again.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Button
+            className="w-full bg-red-600 hover:bg-red-700 text-white"
+            onClick={() => window.location.reload()}
+          >
+            Refresh Page
+          </Button>
+        </CardContent>
+      </Card>
+    );
+  }
+
   function calculateProgress(processed: number, goal: number): number {
     const rawProgress = Math.round((processed / goal) * 100);
 
@@ -27,15 +58,15 @@ export default function StartSession(props: StartSessionProps) {
   }
 
   const mockProgress = calculateProgress(
-    props.stats.processedToday,
-    props.stats.dailyGoal
+    props.stats?.processedToday || 0,
+    props.stats?.dailyGoal || 50
   );
-  const hasUnreadEmails = props.stats.unreadEmails > 0;
+  const hasUnreadEmails = (props.stats?.unreadEmails || 0) > 0;
 
   if (!hasUnreadEmails) {
     // Inbox Zero State
     return (
-      <Card className="lg:col-span-2 bg-gradient-to-br from-green to-emerald-950 border-green">
+      <Card className="lg:col-span-2 bg-gradient-to-br from-green-900/50 to-emerald-800/50 border-green-700">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-2">
             <div className="relative">
@@ -55,8 +86,8 @@ export default function StartSession(props: StartSessionProps) {
           <div className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="text-green-200">
-                Daily Goal - <b>{props.stats.processedToday}</b>/
-                {props.stats.dailyGoal}
+                Daily Goal - <b>{props.stats?.processedToday || 0}</b>/
+                {props.stats?.dailyGoal || 50}
               </span>
               <span className="text-white">{mockProgress}%</span>
             </div>
@@ -90,12 +121,9 @@ export default function StartSession(props: StartSessionProps) {
         </CardContent>
         <CardContent className="pt-0">
           <div className="flex justify-end">
-            <Button
-              variant="glass"
-              size="sm"
-            >
+            <Button variant="outline" size="sm" className="border-green-500 text-green-400 hover:bg-green-500 hover:text-white">
               <FaShare className="mr-1" />
-              Share
+              Share Achievement
             </Button>
           </div>
         </CardContent>
@@ -114,8 +142,8 @@ export default function StartSession(props: StartSessionProps) {
         <CardDescription className="text-gray-300">
           You have{" "}
           <span className="text-white font-semibold">
-            {props.stats.unreadEmails} unread email
-            {props.stats.unreadEmails !== 1 ? "s" : ""}
+            {props.stats?.unreadEmails || 0} unread email
+            {(props.stats?.unreadEmails || 0) !== 1 ? "s" : ""}
           </span>{" "}
           waiting to be triaged.
         </CardDescription>
@@ -124,8 +152,8 @@ export default function StartSession(props: StartSessionProps) {
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
             <span className="text-gray-400">
-              Daily Goal - <b>{props.stats.processedToday}</b>/
-              {props.stats.dailyGoal}
+              Daily Goal - <b>{props.stats?.processedToday || 0}</b>/
+              {props.stats?.dailyGoal || 50}
             </span>
             <span className="text-white">{mockProgress}%</span>
           </div>

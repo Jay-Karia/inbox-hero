@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import StatsOverview from "./stats-overview";
 import LastSession from "./last-session";
 import axios from "axios";
+import StartSession from "./start-session";
 
 export default function Welcome() {
   const { user } = useUser();
@@ -55,7 +56,7 @@ export default function Welcome() {
       {/* Main Action Section - show even while loading */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
         {/* Start Session */}
-        {/* <StartSession stats={stats} /> */}
+        <StartSession stats={stats} loading={loading}/>
 
         {/* Last Session */}
         <LastSession />

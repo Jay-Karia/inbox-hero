@@ -3,7 +3,7 @@
 import { FaClock, FaFire, FaInbox } from "react-icons/fa";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { CardSpotlight } from "./ui/card-spotlight";
-import StatCardSkeleton from "./ui/stat-card-skeleton";
+import StatCardSkeleton from "./skeleton/stat-card";
 
 interface StatsOverviewProps {
   stats: Record<string, any> | null;
