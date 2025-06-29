@@ -12,9 +12,10 @@ import { Progress } from "./ui/progress";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import StartSessionSkeleton from "./skeleton/start-session";
+import type { Stats } from "../../generated/prisma";
 
 interface StartSessionProps {
-  stats: Record<string, any> | null;
+  stats: Stats | null;
   loading: boolean;
 }
 
@@ -121,7 +122,11 @@ export default function StartSession(props: StartSessionProps) {
         </CardContent>
         <CardContent className="pt-0">
           <div className="flex justify-end">
-            <Button variant="outline" size="sm" className="border-green-500 text-green-400 hover:bg-green-500 hover:text-white">
+            <Button
+              variant="outline"
+              size="sm"
+              className="border-green-500 text-green-400 hover:bg-green-500 hover:text-white"
+            >
               <FaShare className="mr-1" />
               Share Achievement
             </Button>

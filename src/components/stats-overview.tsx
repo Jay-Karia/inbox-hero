@@ -4,9 +4,10 @@ import { FaClock, FaFire, FaInbox } from "react-icons/fa";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { CardSpotlight } from "./ui/card-spotlight";
 import StatCardSkeleton from "./skeleton/stat-card";
+import type { Stats } from "../../generated/prisma";
 
 interface StatsOverviewProps {
-  stats: Record<string, any> | null;
+  stats: Stats | null;
   loading: boolean;
 }
 
