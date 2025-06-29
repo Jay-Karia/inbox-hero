@@ -1,6 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
+  provider        = "prisma-client-js"
+  output          = "../generated/prisma"
   previewFeatures = ["driverAdapters"]
 }
 
@@ -14,4 +14,17 @@ model User {
   clerkId String  @unique
   email   String  @unique
   name    String?
+  stats   Stats?
+}
+
+model Stats {
+  id             Int    @id @default(autoincrement())
+  userId         String @unique
+  totalProcessed Int
+  processedToday Int
+  averageTime    Int
+  streak         Int
+  unreadEmails   Int
+  dailyGoal      Int
+  user           User @relation(fields: [userId], references: [clerkId])
 }

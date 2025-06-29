@@ -8,7 +8,6 @@ import LastSession from "./last-session";
 
 // Mock data
 const mockStats: mockStatsType = {
-  totalEmails: 147,
   totalProcessed: 0,
   unreadEmails: 60, // total unread emails at the start of the day
   processedToday: 10, // emails processed today

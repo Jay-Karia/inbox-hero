@@ -1,5 +1,4 @@
 export type mockStatsType = {
-  totalEmails: number;
   totalProcessed: number; // total emails processed
   processedToday: number;
   averageTime: number; // in seconds

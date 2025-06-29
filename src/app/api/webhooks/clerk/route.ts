@@ -19,6 +19,8 @@ export async function POST(req: Request) {
 
   if (event.type === "user.created") {
     const { id, email_addresses, first_name } = event.data;
+
+    // Create or update user in the database
     await prisma.user.upsert({
       where: { clerkId: id },
       update: {},
@@ -26,6 +28,21 @@ export async function POST(req: Request) {
         clerkId: id,
         email: email_addresses[0].email_address,
         name: `${first_name}`,
+      },
+    });
+
+    // Initialize user stats
+    await prisma.stats.upsert({
+      where: { userId: id },
+      update: {},
+      create: {
+        userId: id,
+        totalProcessed: 0,
+        unreadEmails: 0,
+        processedToday: 0,
+        averageTime: 0,
+        streak: 0,
+        dailyGoal: 0,
       },
     });
   }
