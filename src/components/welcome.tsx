@@ -8,7 +8,7 @@ import axios from "axios";
 import StartSession from "./start-session";
 
 export default function Welcome() {
-  const { user, isLoaded } = useUser(); // Add isLoaded to track loading state
+  const { user } = useUser();
   const [currentTime, setCurrentTime] = useState(new Date());
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -50,7 +50,7 @@ export default function Welcome() {
               <h1 className="text-4xl font-bold text-white mb-2">
                 {getGreeting()}, {user.firstName}! 👋
               </h1>
-              <p className="text-xl text-gray-300">
+              <p className="text-lg font-semibold text-gray-300">
                 Ready to conquer your inbox?
               </p>
             </>

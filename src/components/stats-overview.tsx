@@ -61,7 +61,7 @@ export default function StatsOverview(props: StatsOverviewProps) {
             {props.stats?.totalProcessed || 0}
           </div>
           <p className="text-xs text-blue-300 z-20">
-            +{props.stats?.processedToday || 0} today
+            {props.stats?.processedToday || 0} today
           </p>
         </CardContent>
       </CardSpotlight>

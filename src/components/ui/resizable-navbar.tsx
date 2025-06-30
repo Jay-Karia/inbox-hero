@@ -9,6 +9,7 @@ import {
 } from "motion/react";
 
 import React, { ReactNode, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 interface NavbarProps {
   children: React.ReactNode;
@@ -114,6 +115,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
 
 export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
   const [hovered, setHovered] = useState<number | null>(null);
+  const pathname = usePathname();
 
   return (
     <motion.div
@@ -127,7 +129,15 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         <a
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className="relative px-4 py-2 text-neutral-600 dark:text-neutral-300"
+          className={cn(
+            "relative px-4 py-2 text-neutral-600 dark:text-neutral-300",
+            {
+              "dark:text-neutral-200 dark:bg-neutral-800 rounded-full":
+                pathname.endsWith(item.link),
+              "hover:text-neutral-800 dark:hover:text-neutral-200":
+                hovered !== idx && pathname !== item.link,
+            }
+          )}
           key={`link-${idx}`}
           href={item.link}
         >

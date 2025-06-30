@@ -14,7 +14,7 @@ export default function LastSessionSkeleton() {
         <div className="h-4 bg-gray-700 rounded w-full animate-pulse"></div>
         <div className="h-4 bg-gray-700 rounded w-3/4 animate-pulse"></div>
         <div className="space-y-2">
-          {[1, 2, 3, 4].map((i) => (
+          {[1, 2, 3].map((i) => (
             <div
               key={i}
               className="h-12 bg-gray-700/30 rounded-lg animate-pulse"
