@@ -6,7 +6,6 @@ import { Button } from "./ui/button";
 import {
   FaArchive,
   FaTrash,
-  FaEnvelope,
   FaClock,
   FaInbox,
   FaPlay,
@@ -88,7 +87,7 @@ export default function LastSession() {
                 • <b>Delete</b> emails you&apos;ll never need
               </li>
               <li>
-                • <b>Reply</b> to urgent messages quickly
+                • <b>SKip</b> emails you want to come back to later
               </li>
             </ul>
           </div>
@@ -111,13 +110,6 @@ export default function LastSession() {
       icon: FaTrash,
       color: "text-red-400",
       bgColor: "bg-red-400/10",
-    },
-    {
-      action: "Replied",
-      count: lastSession.replied || 0,
-      icon: FaEnvelope,
-      color: "text-green-400",
-      bgColor: "bg-green-400/10",
     },
     {
       action: "Skipped",

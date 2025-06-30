@@ -44,7 +44,6 @@ model Session {
   emailsProcessed Int
   archived        Int       @default(0)
   deleted         Int       @default(0)
-  replied         Int       @default(0)
   skipped         Int       @default(0)
   user            User      @relation(fields: [userId], references: [clerkId])
   createdAt       DateTime  @default(now())
