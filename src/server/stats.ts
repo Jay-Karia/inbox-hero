@@ -22,7 +22,6 @@ app.get("/", clerkMiddleware(), async (c) => {
     console.error("Error fetching stats:", error);
     return c.text("Internal Server Error", 500);
   }
-
 });
 
 export default app;
