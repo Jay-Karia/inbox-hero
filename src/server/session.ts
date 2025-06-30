@@ -7,21 +7,22 @@ const app = new Hono();
 // Get the session data
 app.get("/", clerkMiddleware(), async (c) => {
   const auth = getAuth(c);
-  if (auth && !auth.userId || !auth) {
+  if (!auth?.userId) {
     return c.text("Unauthorized", 401);
   }
 
-  // Fetch the session data from database
   try {
-    const session = await prisma.session.findUnique({
+    const sessions = await prisma.session.findMany({
       where: { userId: auth.userId },
+      orderBy: { startTime: "desc" },
+      take: 20,
     });
 
-    return c.json(session);
+    return c.json(sessions);
   } catch (error) {
-    console.error("Error fetching session:", error);
+    console.error("Error fetching sessions:", error);
     return c.text("Internal Server Error", 500);
   }
-})
+});
 
 export default app;

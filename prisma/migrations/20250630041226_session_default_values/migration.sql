@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Session" ALTER COLUMN "archived" SET DEFAULT 0,
+ALTER COLUMN "deleted" SET DEFAULT 0,
+ALTER COLUMN "replied" SET DEFAULT 0,
+ALTER COLUMN "skipped" SET DEFAULT 0;
