@@ -10,14 +10,14 @@ datasource db {
 }
 
 model User {
-  id          Int          @id @default(autoincrement())
-  clerkId     String       @unique
-  email       String       @unique
-  name        String?
-  stats       Stats?
-  sessions    Session[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt @default(now())
+  id        Int       @id @default(autoincrement())
+  clerkId   String    @unique
+  email     String    @unique
+  name      String?
+  stats     Stats?
+  sessions  Session[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
 }
 
 model Stats {
@@ -31,12 +31,12 @@ model Stats {
   dailyGoal      Int
   user           User     @relation(fields: [userId], references: [clerkId])
   createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt @default(now())
+  updatedAt      DateTime @default(now()) @updatedAt
 }
 
 model Session {
   id              Int       @id @default(autoincrement())
-  userId          String    @unique
+  userId          String
   startTime       DateTime  @default(now())
   endTime         DateTime?
   duration        Int?
@@ -44,7 +44,11 @@ model Session {
   archived        Int
   deleted         Int
   replied         Int
+  skipped         Int
   user            User      @relation(fields: [userId], references: [clerkId])
   createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt @default(now())
+  updatedAt       DateTime  @default(now()) @updatedAt
+
+  @@index([userId, startTime])
+  @@index([userId, createdAt])
 }

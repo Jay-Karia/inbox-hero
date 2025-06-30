@@ -1,7 +1,7 @@
 "use client";
+
 import { useUser } from "@clerk/nextjs";
 import { useState, useEffect } from "react";
-// import StartSession from "./start-session";
 import StatsOverview from "./stats-overview";
 import LastSession from "./last-session";
 import axios from "axios";
@@ -50,15 +50,9 @@ export default function Welcome() {
         <p className="text-xl text-gray-300">Ready to conquer your inbox?</p>
       </div>
 
-      {/* Stats Overview - now handles its own loading state */}
       <StatsOverview stats={stats} loading={loading} />
-
-      {/* Main Action Section - show even while loading */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-        {/* Start Session */}
-        <StartSession stats={stats} loading={loading}/>
-
-        {/* Last Session */}
+        <StartSession stats={stats} loading={loading} />
         <LastSession />
       </div>
     </div>

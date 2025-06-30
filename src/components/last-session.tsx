@@ -29,6 +29,13 @@ export default function LastSession() {
       color: "text-green-400",
       bgColor: "bg-green-400/10",
     },
+    {
+      action: "Skipped",
+      count: 5,
+      icon: FaInbox,
+      color: "text-gray-400",
+      bgColor: "bg-gray-400/10",
+    }
   ];
 
   // Set to true to test no session state
