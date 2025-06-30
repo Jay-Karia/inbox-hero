@@ -45,15 +45,23 @@ export default function Welcome() {
     <div className="min-h-screen p-6 max-w-7xl mx-auto">
       <div className="relative z-10 text-center py-8">
         <h1 className="text-4xl font-bold text-white mb-2">
-          {getGreeting()},{" "}
-          {!isLoaded ? (
-            <span className="inline-block rounded animate-pulse w-24 h-8 align-middle"></span>
+          {user ? (
+            <>
+              <h1 className="text-4xl font-bold text-white mb-2">
+                {getGreeting()}, {user.firstName}! 👋
+              </h1>
+              <p className="text-xl text-gray-300">
+                Ready to conquer your inbox?
+              </p>
+            </>
           ) : (
-            user?.firstName || "there"
+            <>
+              <h1 className="text-4xl font-bold text-white mb-2">
+                Hey There! 👋
+              </h1>
+            </>
           )}
-          ! 👋
         </h1>
-        <p className="text-xl text-gray-300">Ready to conquer your inbox?</p>
       </div>
 
       <StatsOverview stats={stats} loading={loading} />
