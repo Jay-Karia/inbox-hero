@@ -14,10 +14,8 @@ import {
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
 import { GoHeartFill } from "react-icons/go";
-import { useUser } from "@clerk/nextjs";
 
 export default function Navbar() {
-  const { isLoaded } = useUser(); // Track loading state
   const navItems = [
     {
       name: "Home",
@@ -28,30 +26,12 @@ export default function Navbar() {
       link: "dashboard",
     },
     {
-      name: "Clean Up",
-      link: "clean",
-    },
-    {
       name: "Triage",
       link: "triage",
     },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // Skeleton component for loading state
-  const AuthSkeleton = ({ mobile = false }) => (
-    <div className={`${mobile ? "w-full" : ""} flex items-center gap-2`}>
-      <div
-        className={`bg-gray-700 rounded-md animate-pulse h-9 ${
-          mobile ? "w-full" : "w-20"
-        }`}
-      ></div>
-      {!mobile && (
-        <div className="bg-gray-700 rounded-md animate-pulse h-9 w-24"></div>
-      )}
-    </div>
-  );
 
   return (
     <div className="relative w-full">
@@ -61,19 +41,13 @@ export default function Navbar() {
           <Logo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-2">
-            {!isLoaded ? (
-              <AuthSkeleton />
-            ) : (
-              <>
-                <NavbarButton variant="secondary">
-                  <SignIn />
-                </NavbarButton>
-                <NavbarButton variant="donate" className="flex items-center">
-                  <GoHeartFill className="inline mr-1" />
-                  Donate
-                </NavbarButton>
-              </>
-            )}
+            <NavbarButton variant="secondary">
+              <SignIn />
+            </NavbarButton>
+            <NavbarButton variant="donate" className="flex items-center">
+              <GoHeartFill className="inline mr-1" />
+              Donate
+            </NavbarButton>
           </div>
         </NavBody>
 
@@ -102,17 +76,11 @@ export default function Navbar() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
-              {!isLoaded ? (
-                <AuthSkeleton mobile={true} />
-              ) : (
-                <>
-                  <SignIn className="w-full" />
-                  <NavbarButton variant="donate">
-                    <GoHeartFill className="inline mr-1" />
-                    Donate
-                  </NavbarButton>
-                </>
-              )}
+              <SignIn className="w-full" />
+              <NavbarButton variant="donate">
+                <GoHeartFill className="inline mr-1" />
+                Donate
+              </NavbarButton>
             </div>
           </MobileNavMenu>
         </MobileNav>
