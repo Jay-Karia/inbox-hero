@@ -18,6 +18,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Session } from "../../generated/prisma";
+import LastSessionSkeleton from "./skeleton/last-session";
+import { formatDate, formatDuration } from "@/lib/date";
 
 export default function LastSession() {
   const [lastSession, setLastSession] = useState<Session | null>(null);
@@ -29,7 +31,7 @@ export default function LastSession() {
       try {
         const response = await axios.get("/api/session");
         setLastSession(response.data[0] || null);
-        console.log(response.data)
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching sessions:", error);
       } finally {
@@ -42,26 +44,7 @@ export default function LastSession() {
 
   // Show loading skeleton
   if (loading) {
-    return (
-      <Card className="bg-gray-900/50 border-gray-700">
-        <CardHeader className="pb-4">
-          <div className="flex items-center gap-2 mb-2">
-            <div className="h-5 w-5 bg-gray-700 rounded animate-pulse"></div>
-            <div className="h-5 bg-gray-700 rounded w-24 animate-pulse"></div>
-          </div>
-          <div className="h-4 bg-gray-700 rounded w-32 animate-pulse"></div>
-        </CardHeader>
-        <CardContent className="space-y-3">
-          <div className="h-4 bg-gray-700 rounded w-full animate-pulse"></div>
-          <div className="h-4 bg-gray-700 rounded w-3/4 animate-pulse"></div>
-          <div className="space-y-2">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="h-12 bg-gray-700/30 rounded-lg animate-pulse"></div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-    );
+    return <LastSessionSkeleton />;
   }
 
   // No Last Session State
@@ -114,37 +97,6 @@ export default function LastSession() {
     );
   }
 
-  // Helper functions
-  const formatDate = (date: Date | string) => {
-    const sessionDate = new Date(date);
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const sessionDay = new Date(sessionDate.getFullYear(), sessionDate.getMonth(), sessionDate.getDate());
-
-    if (sessionDay.getTime() === today.getTime()) {
-      return `Today at ${sessionDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
-    } else if (sessionDay.getTime() === today.getTime() - 86400000) {
-      return `Yesterday at ${sessionDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
-    } else {
-      return sessionDate.toLocaleDateString([], {
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      });
-    }
-  };
-
-  const formatDuration = (seconds: number | null) => {
-    if (!seconds) return "Unknown";
-    const minutes = Math.floor(seconds / 60);
-    const remainingSeconds = seconds % 60;
-    if (minutes > 0) {
-      return `${minutes}m ${remainingSeconds}s`;
-    }
-    return `${remainingSeconds}s`;
-  };
-
   const sessionActions = [
     {
       action: "Archived",
@@ -186,7 +138,9 @@ export default function LastSession() {
         </CardTitle>
         <div className="text-sm text-gray-400">
           Processed{" "}
-          <span className="text-white font-semibold">{lastSession.emailsProcessed}</span>{" "}
+          <span className="text-white font-semibold">
+            {lastSession.emailsProcessed}
+          </span>{" "}
           emails
         </div>
       </CardHeader>
