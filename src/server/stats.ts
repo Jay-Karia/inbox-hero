@@ -36,6 +36,7 @@ app.patch("/", clerkMiddleware(), async (c) => {
     const body = await c.req.json();
     const parsedBody = UpdateStatsSchema.safeParse(body);
 
+    // Validate the request body
     if (!parsedBody.success) {
       return c.json(
         { error: "Invalid request body", details: parsedBody.error.errors },
@@ -64,11 +65,13 @@ app.patch("/", clerkMiddleware(), async (c) => {
       },
     });
 
-    return c.json(updatedStats);
+    return c.json(updatedStats, 201);
   } catch (error) {
     console.error("Error updating stats:", error);
     return c.text("Internal Server Error", 500);
   }
 });
+
+// TODO: check for streak
 
 export default app;

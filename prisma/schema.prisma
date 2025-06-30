@@ -39,8 +39,8 @@ model Session {
   id              Int       @id @default(autoincrement())
   userId          String
   startTime       DateTime  @default(now())
-  endTime         DateTime?
-  duration        Int?
+  endTime         DateTime
+  duration        Int
   emailsProcessed Int
   archived        Int       @default(0)
   deleted         Int       @default(0)
