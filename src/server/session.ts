@@ -28,10 +28,10 @@ app.get("/", clerkMiddleware(), async (c) => {
 
 // Add a new session
 app.post("/", clerkMiddleware(), async (c) => {
-  const auth = getAuth(c);
-  if (!auth?.userId) {
-    return c.text("Unauthorized", 401);
-  }
+  // const auth = getAuth(c);
+  // if (!auth?.userId) {
+  //   return c.text("Unauthorized", 401);
+  // }
 
   try {
     const body = await c.req.json();
@@ -50,9 +50,9 @@ app.post("/", clerkMiddleware(), async (c) => {
     const parsedData = parsedBody.data;
 
     // Check for user
-    if (auth.userId !== parsedData.userId) {
-      return c.text("User not found!", 401);
-    }
+    // if (auth.userId !== parsedData.userId) {
+    //   return c.text("User not found!", 401);
+    // }
 
     // Create the session in the database
     const newSession = await prisma.session.create({
@@ -67,6 +67,26 @@ app.post("/", clerkMiddleware(), async (c) => {
         userId: parsedData.userId,
       },
     });
+
+    // Check for number of sessions
+    const sessionCount = await prisma.session.count({
+      where: { userId: parsedData.userId },
+    });
+
+    // Remove the first session if there are more than 20
+    if (sessionCount > 20) {
+      const oldestSession = await prisma.session.findFirst({
+        where: { userId: parsedData.userId },
+        orderBy: { startTime: "asc" },
+      });
+
+      if (oldestSession) {
+        await prisma.session.delete({
+          where: { id: oldestSession.id },
+        });
+      }
+    }
+
 
     return c.json(newSession, 201);
   } catch (error) {

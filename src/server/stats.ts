@@ -65,7 +65,7 @@ app.patch("/", clerkMiddleware(), async (c) => {
       },
     });
 
-    return c.json(updatedStats, 201);
+    return c.json(updatedStats, 200);
   } catch (error) {
     console.error("Error updating stats:", error);
     return c.text("Internal Server Error", 500);

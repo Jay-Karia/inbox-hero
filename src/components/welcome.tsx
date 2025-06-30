@@ -58,3 +58,5 @@ export default function Welcome() {
     </div>
   );
 }
+
+// TODO: fix the layout shift when the user name loads
