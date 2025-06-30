@@ -87,7 +87,7 @@ export default function LastSession() {
                 • <b>Delete</b> emails you&apos;ll never need
               </li>
               <li>
-                • <b>SKip</b> emails you want to come back to later
+                • <b>Skip</b> emails you want to come back to later
               </li>
             </ul>
           </div>
