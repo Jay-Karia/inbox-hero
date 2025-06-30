@@ -1,6 +1,6 @@
 "use client";
 
-import { FaInbox, FaCheckCircle, FaShare } from "react-icons/fa";
+import { FaInbox, FaCheckCircle } from "react-icons/fa";
 import {
   Card,
   CardContent,
@@ -64,7 +64,7 @@ export default function StartSession(props: StartSessionProps) {
   );
   const hasUnreadEmails = (props.stats?.unreadEmails || 0) > 0;
 
-  if (!hasUnreadEmails) {
+  if (!hasUnreadEmails && props.stats?.achievedInboxZero) {
     // Inbox Zero State
     return (
       <Card className="lg:col-span-2 bg-gradient-to-br from-green-900/50 to-emerald-800/50 border-green-700">
@@ -118,18 +118,6 @@ export default function StartSession(props: StartSessionProps) {
                     100 - mockProgress
                   }% away from your daily goal. New emails will help you reach it!`}
             </p>
-          </div>
-        </CardContent>
-        <CardContent className="pt-0">
-          <div className="flex justify-end">
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-green-500 text-green-400 hover:bg-green-500 hover:text-white"
-            >
-              <FaShare className="mr-1" />
-              Share Achievement
-            </Button>
           </div>
         </CardContent>
       </Card>

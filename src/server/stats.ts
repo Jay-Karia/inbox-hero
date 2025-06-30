@@ -24,4 +24,6 @@ app.get("/", clerkMiddleware(), async (c) => {
   }
 });
 
+// Update the user stats
+
 export default app;
