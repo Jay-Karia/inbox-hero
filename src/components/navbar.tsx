@@ -34,15 +34,19 @@ export default function Navbar() {
     {
       name: "Triage",
       link: "triage",
-    }
+    },
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Skeleton component for loading state
   const AuthSkeleton = ({ mobile = false }) => (
-    <div className={`${mobile ? 'w-full' : ''} flex items-center gap-2`}>
-      <div className={`bg-gray-700 rounded-md animate-pulse h-9 ${mobile ? 'w-full' : 'w-20'}`}></div>
+    <div className={`${mobile ? "w-full" : ""} flex items-center gap-2`}>
+      <div
+        className={`bg-gray-700 rounded-md animate-pulse h-9 ${
+          mobile ? "w-full" : "w-20"
+        }`}
+      ></div>
       {!mobile && (
         <div className="bg-gray-700 rounded-md animate-pulse h-9 w-24"></div>
       )}

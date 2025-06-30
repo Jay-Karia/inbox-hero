@@ -44,7 +44,7 @@ export const CardSpotlight = ({
       {...props}
     >
       <motion.div
-        className="pointer-events-none absolute z-0 -inset-px rounded-md opacity-0 transition duration-150 group-hover/spotlight:opacity-80"
+        className="pointer-events-none absolute z-0 -inset-px rounded-md opacity-0 transition duration-150 group-hover/spotlight:opacity-90"
         style={{
           backgroundColor: color,
           maskImage: useMotionTemplate`
