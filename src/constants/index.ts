@@ -6,6 +6,7 @@ export const DEFAULT_SETTINGS: Settings = {
   progressBar: true,
   showTimer: true,
   soundEffects: false,
+  endlessMode: false,
 };
 
 export const QUICK_SPRINT: Settings = {
@@ -14,6 +15,7 @@ export const QUICK_SPRINT: Settings = {
   showTimer: true,
   soundEffects: false,
   progressBar: true,
+  endlessMode: false,
 };
 
 export const FOCUSED_SESSION: Settings = {
@@ -22,6 +24,7 @@ export const FOCUSED_SESSION: Settings = {
   showTimer: true,
   soundEffects: false,
   progressBar: true,
+  endlessMode: false,
 };
 
 export const POWER_HOUR: Settings = {
@@ -30,4 +33,5 @@ export const POWER_HOUR: Settings = {
   showTimer: true,
   soundEffects: true,
   progressBar: true,
+  endlessMode: false,
 };

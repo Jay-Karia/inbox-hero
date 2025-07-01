@@ -1,4 +1,11 @@
-import { FaClock, FaThLarge, FaVolumeUp, FaChartLine } from "react-icons/fa";
+import {
+  FaClock,
+  FaThLarge,
+  FaVolumeUp,
+  FaChartLine,
+  FaInfinity,
+  FaRegQuestionCircle,
+} from "react-icons/fa";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 import { Settings } from "@/types/settings";
 import { Label } from "./ui/label";
@@ -7,6 +14,7 @@ import { Separator } from "./ui/separator";
 import { Switch } from "./ui/switch";
 import React from "react";
 import { IconType } from "react-icons/lib";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 interface QuickSettingsProps {
   settings: Settings;
@@ -53,6 +61,7 @@ export default function QuickSettings(props: QuickSettingsProps) {
               max={60}
               step={5}
               className="w-full"
+              disabled={props.settings.endlessMode}
             />
             <div className="flex justify-between text-xs text-gray-500">
               <span>10 min</span>
@@ -77,6 +86,7 @@ export default function QuickSettings(props: QuickSettingsProps) {
               max={100}
               step={10}
               className="w-full"
+              disabled={props.settings.endlessMode}
             />
             <div className="flex justify-between text-xs text-gray-500">
               <span>10</span>
@@ -110,6 +120,37 @@ export default function QuickSettings(props: QuickSettingsProps) {
                 />
               </div>
             ))}
+          </div>
+
+          {/* Endless Mode */}
+          <div className="flex items-center justify-between p-3 rounded-lg bg-blue-900/40">
+            <Label
+              htmlFor="endlessMode"
+              className="text-white flex items-center gap-2 cursor-pointer"
+            >
+              <FaInfinity className="h-4 w-4 text-blue-300" />
+              Endless Mode
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <FaRegQuestionCircle className="h-4 w-4 text-gray-400" />
+                </TooltipTrigger>
+                <TooltipContent className="max-w-sm text-center">
+                  <p>
+                    When enabled, the session will continue indefinitely until
+                    manually stopped or ran out of unread emails. Useful for
+                    ongoing tasks or when you want to keep working without a
+                    fixed endpoint.
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </Label>
+            <Switch
+              id="endlessMode"
+              checked={props.settings.endlessMode}
+              onCheckedChange={(checked: boolean) =>
+                props.handleSettingChange("endlessMode", checked)
+              }
+            />
           </div>
         </CardContent>
       </Card>

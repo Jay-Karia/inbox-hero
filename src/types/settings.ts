@@ -4,4 +4,5 @@ export type Settings = {
   showTimer: boolean;
   soundEffects: boolean;
   progressBar: boolean
+  endlessMode: boolean;
 }

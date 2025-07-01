@@ -27,32 +27,42 @@ export default function StartSession(props: StartSessionProps) {
           {/* Session Preview */}
           <div className="space-y-4 p-4 bg-gray-800/30 rounded-lg">
             <h4 className="text-white font-medium">Session Preview</h4>
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div className="flex justify-between">
-                <span className="text-gray-400">Duration:</span>
-                <span className="text-white">
-                  {props.settings.duration} min
-                </span>
+            {props.settings.endlessMode ? (
+              <div className="text-gray-400">
+                <p className="mb-2">You are in Endless Mode.</p>
+                <p className="text-sm">
+                  In this mode, you can triage emails without a time limit or
+                  target. Focus on clearing your inbox at your own pace.
+                </p>
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-400">Target:</span>
-                <span className="text-white">
-                  {props.settings.target} emails
-                </span>
+            ) : (
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Duration:</span>
+                  <span className="text-white">
+                    {props.settings.duration} min
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Target:</span>
+                  <span className="text-white">
+                    {props.settings.target} emails
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Timer:</span>
+                  <span className="text-white">
+                    {props.settings.showTimer ? "On" : "Off"}
+                  </span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-400">Sounds:</span>
+                  <span className="text-white">
+                    {props.settings.soundEffects ? "On" : "Off"}
+                  </span>
+                </div>
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-400">Timer:</span>
-                <span className="text-white">
-                  {props.settings.showTimer ? "On" : "Off"}
-                </span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-400">Sounds:</span>
-                <span className="text-white">
-                  {props.settings.soundEffects ? "On" : "Off"}
-                </span>
-              </div>
-            </div>
+            )}
           </div>
 
           {/* Quick Presets */}
