@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import StatsOverview from "./stats-overview";
 import LastSession from "./last-session";
 import axios from "axios";
-import StartSession from "./start-session";
+import NextSession from "./next-session";
 
 export default function Welcome() {
   const { user } = useUser();
@@ -64,7 +64,7 @@ export default function Welcome() {
 
       <StatsOverview stats={stats} loading={loading} />
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-        <StartSession stats={stats} loading={loading} />
+        <NextSession stats={stats} loading={loading} />
         <LastSession />
       </div>
     </div>
