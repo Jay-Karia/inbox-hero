@@ -2,9 +2,11 @@ import { FaClock, FaThLarge, FaVolumeUp, FaChartLine } from "react-icons/fa";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 import { Settings } from "@/types/settings";
 import { Label } from "./ui/label";
-import {Slider} from "./ui/slider";
-import {Separator} from "./ui/separator";
-import {Switch} from "./ui/switch";
+import { Slider } from "./ui/slider";
+import { Separator } from "./ui/separator";
+import { Switch } from "./ui/switch";
+import React from "react";
+import { IconType } from "react-icons/lib";
 
 interface QuickSettingsProps {
   settings: Settings;
@@ -12,6 +14,15 @@ interface QuickSettingsProps {
 }
 
 export default function QuickSettings(props: QuickSettingsProps) {
+  const toggleSettings: {
+    key: keyof Settings;
+    label: string;
+    icon: IconType;
+  }[] = [
+    { key: "showTimer", label: "Show Timer", icon: FaClock },
+    { key: "soundEffects", label: "Sound Effects", icon: FaVolumeUp },
+    { key: "progressBar", label: "Progress Bar", icon: FaChartLine },
+  ];
   return (
     <>
       <Card className="bg-gradient-to-br from-gray-900/80 to-gray-800/60 border-gray-600">
@@ -78,11 +89,7 @@ export default function QuickSettings(props: QuickSettingsProps) {
 
           {/* Feature Toggles */}
           <div className="grid grid-cols-1 gap-3">
-            {[
-              { key: "showTimer", label: "Show Timer", icon: FaClock },
-              { key: "soundEffects", label: "Sound Effects", icon: FaVolumeUp },
-              { key: "progressBar", label: "Progress Bar", icon: FaChartLine },
-            ].map(({ key, label, icon: Icon }) => (
+            {toggleSettings.map(({ key, label, icon: Icon }) => (
               <div
                 key={key}
                 className="flex items-center justify-between p-3 rounded-lg bg-gray-800/40"
