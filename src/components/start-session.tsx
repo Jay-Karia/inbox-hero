@@ -75,7 +75,7 @@ export default function StartSession(props: StartSessionProps) {
                 <div className="text-left">
                   <div className="font-medium">Quick Sprint</div>
                   <div className="text-xs text-gray-400">
-                    15 min • 25 emails
+                    {QUICK_SPRINT.duration} min • {QUICK_SPRINT.target} emails
                   </div>
                 </div>
               </Button>
@@ -90,7 +90,7 @@ export default function StartSession(props: StartSessionProps) {
                 <div className="text-left">
                   <div className="font-medium">Focused Session</div>
                   <div className="text-xs text-gray-400">
-                    30 min • 50 emails
+                    {FOCUSED_SESSION.duration} min • {FOCUSED_SESSION.target} emails
                   </div>
                 </div>
               </Button>
@@ -105,7 +105,7 @@ export default function StartSession(props: StartSessionProps) {
                 <div className="text-left">
                   <div className="font-medium">Power Hour</div>
                   <div className="text-xs text-gray-400">
-                    60 min • 100 emails
+                    {POWER_HOUR.duration} min • {POWER_HOUR.target} emails
                   </div>
                 </div>
               </Button>

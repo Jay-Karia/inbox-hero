@@ -140,7 +140,7 @@ export default function TriageSkeleton() {
                   <div className="w-full bg-gray-700/50 rounded-full h-2">
                     <div
                       className="h-2 bg-gray-600 rounded-full"
-                      style={{ width: `${Math.random() * 100}%` }}
+                      style={{ width: "70%" }}
                     ></div>
                   </div>
                 </div>

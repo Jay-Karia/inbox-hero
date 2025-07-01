@@ -5,6 +5,10 @@ import QuickSettings from "./quick-settings";
 import { Settings } from "@/types/settings";
 import { DEFAULT_SETTINGS } from "@/constants";
 import StartSession from "./start-session";
+import AllSessions from "./all-sessions";
+import { Separator } from "./ui/separator";
+import { useAtomValue } from "jotai";
+import { sessionsAtom } from "@/atoms/sessions";
 
 interface TriageProps {
   handleStartSession: (settings: unknown) => void;
@@ -12,6 +16,7 @@ interface TriageProps {
 
 export default function Triage({ handleStartSession }: TriageProps) {
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
+  const sessions = useAtomValue(sessionsAtom);
 
   const handleSettingChange = (key: string, value: unknown) => {
     setSettings((prev) => ({ ...prev, [key]: value }));
@@ -31,6 +36,10 @@ export default function Triage({ handleStartSession }: TriageProps) {
             setSettings={setSettings}
           />
         </div>
+
+        <Separator className="my-8" />
+
+        <AllSessions sessions={sessions} />
       </div>
     </div>
   );
