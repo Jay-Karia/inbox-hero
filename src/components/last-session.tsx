@@ -19,18 +19,21 @@ import axios from "axios";
 import { Session } from "../../generated/prisma";
 import LastSessionSkeleton from "./skeleton/last-session";
 import { formatDate, formatDuration } from "@/lib/date";
+import { useSessionStore } from "@/store/sessions";
 
 export default function LastSession() {
   const [lastSession, setLastSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const overwriteSessions = useSessionStore((state) => state.overwriteSessions);
 
   useEffect(() => {
     const fetchSessions = async () => {
       setLoading(true);
       try {
         const response = await axios.get("/api/session");
+        overwriteSessions(response.data || []);
         setLastSession(response.data[0] || null);
-        console.log(response.data);
       } catch (error) {
         console.error("Error fetching sessions:", error);
       } finally {
@@ -39,7 +42,7 @@ export default function LastSession() {
     };
 
     fetchSessions();
-  }, []);
+  }, [overwriteSessions]);
 
   // Show loading skeleton
   if (loading) {
