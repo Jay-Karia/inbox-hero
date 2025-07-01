@@ -3,7 +3,7 @@ import { Label } from "@radix-ui/react-label";
 import { FaPlay, FaBolt, FaThLarge, FaRocket } from "react-icons/fa";
 import { Button } from "./ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
-import {Settings} from "@/types/settings";
+import { Settings } from "@/types/settings";
 
 interface StartSessionProps {
   settings: Settings;
@@ -30,11 +30,15 @@ export default function StartSession(props: StartSessionProps) {
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div className="flex justify-between">
                 <span className="text-gray-400">Duration:</span>
-                <span className="text-white">{props.settings.duration} min</span>
+                <span className="text-white">
+                  {props.settings.duration} min
+                </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-400">Target:</span>
-                <span className="text-white">{props.settings.target} emails</span>
+                <span className="text-white">
+                  {props.settings.target} emails
+                </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-400">Timer:</span>
@@ -53,12 +57,12 @@ export default function StartSession(props: StartSessionProps) {
 
           {/* Quick Presets */}
           <div className="space-y-3">
-            <Label className="text-white font-medium">Quick Presets</Label>
             <div className="grid grid-cols-1 gap-2">
+              <Label className="text-white font-medium">Quick Presets</Label>
               <Button
                 variant="outline"
                 size="sm"
-                className="bg-gray-800/30 hover:bg-gray-700/50 border-gray-600 justify-start"
+                className="bg-gray-800/30 hover:bg-gray-700/50 border-gray-600 justify-start py-[1.30rem]"
                 onClick={() => props.setSettings(QUICK_SPRINT)}
               >
                 <FaBolt className="mr-2 h-4 w-4 text-yellow-400" />
@@ -73,7 +77,7 @@ export default function StartSession(props: StartSessionProps) {
               <Button
                 variant="outline"
                 size="sm"
-                className="bg-gray-800/30 hover:bg-gray-700/50 border-gray-600 justify-start"
+                className="bg-gray-800/30 hover:bg-gray-700/50 border-gray-600 justify-start py-[1.30rem]"
                 onClick={() => props.setSettings(FOCUSED_SESSION)}
               >
                 <FaThLarge className="mr-2 h-4 w-4 text-blue-400" />
@@ -88,7 +92,7 @@ export default function StartSession(props: StartSessionProps) {
               <Button
                 variant="outline"
                 size="sm"
-                className="bg-gray-800/30 hover:bg-gray-700/50 border-gray-600 justify-start"
+                className="bg-gray-800/30 hover:bg-gray-700/50 border-gray-600 justify-start py-[1.30rem]"
                 onClick={() => props.setSettings(POWER_HOUR)}
               >
                 <FaRocket className="mr-2 h-4 w-4 text-green-400" />
