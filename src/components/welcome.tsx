@@ -44,24 +44,22 @@ export default function Welcome() {
   return (
     <div className="min-h-screen p-6 max-w-7xl mx-auto">
       <div className="relative z-10 text-center py-8">
-        <h1 className="text-4xl font-bold text-white mb-2">
-          {user ? (
-            <>
-              <h1 className="text-4xl font-bold text-white mb-2">
-                {getGreeting()}, {user.firstName}! 👋
-              </h1>
-              <p className="text-lg font-semibold text-gray-300">
-                Ready to conquer your inbox?
-              </p>
-            </>
-          ) : (
-            <>
-              <h1 className="text-4xl font-bold text-white mb-2">
-                Hey There! 👋
-              </h1>
-            </>
-          )}
-        </h1>
+        {user ? (
+          <>
+            <h1 className="text-4xl font-bold text-white mb-2">
+              {getGreeting()}, {user.firstName}! 👋
+            </h1>
+            <p className="text-lg font-semibold text-gray-300">
+              Ready to conquer your inbox?
+            </p>
+          </>
+        ) : (
+          <>
+            <h1 className="text-4xl font-bold text-white mb-2">
+              Hey There! 👋
+            </h1>
+          </>
+        )}
       </div>
 
       <StatsOverview stats={stats} loading={loading} />
@@ -72,3 +70,6 @@ export default function Welcome() {
     </div>
   );
 }
+
+// TODO: fix the layout shift
+// TODO: cache the data
