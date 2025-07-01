@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
-import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/navbar";
-import { dark } from '@clerk/themes'
-
-const robotoCondensed = localFont({
-  src: "../fonts/Roboto_Condensed/static/RobotoCondensed-Regular.ttf"
-});
+import { dark } from "@clerk/themes";
+import localFont from "next/font/local";
 
 export const metadata: Metadata = {
   title: "Inbox Hero",
@@ -20,6 +16,10 @@ export const metadata: Metadata = {
   ],
 };
 
+const robotoCondensed = localFont({
+  src: "../fonts/Roboto_Condensed/static/RobotoCondensed-Regular.ttf",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -29,11 +29,11 @@ export default function RootLayout({
     <ClerkProvider
       appearance={{
         cssLayerName: "clerk",
-        baseTheme: dark
+        baseTheme: dark,
       }}
     >
       <html lang="en" className="dark">
-        <body className={`${robotoCondensed} antialiased h-full`}>
+        <body className={`${robotoCondensed.className} antialiased h-full`}>
           <Navbar />
           {children}
         </body>

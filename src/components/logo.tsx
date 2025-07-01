@@ -1,8 +1,13 @@
 import Image from "next/image";
+import localFont from "next/font/local";
+
+const robotoCondensed = localFont({
+  src: "../fonts/Roboto_Condensed/static/RobotoCondensed-Regular.ttf",
+});
 
 export default function Logo() {
   return (
-    <div className="flex gap-2 justify-center items-center cursor-pointer">
+    <div className={`${robotoCondensed.className} flex gap-2 justify-center items-center cursor-pointer`}>
         <Image
           src="/logo-trans.png"
           alt="Logo"
