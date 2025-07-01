@@ -5,6 +5,7 @@ import {
   FaChartLine,
   FaInfinity,
   FaRegQuestionCircle,
+  FaMailBulk,
 } from "react-icons/fa";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 import { Settings } from "@/types/settings";
@@ -15,6 +16,7 @@ import { Switch } from "./ui/switch";
 import React from "react";
 import { IconType } from "react-icons/lib";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { FaGear } from "react-icons/fa6";
 
 interface QuickSettingsProps {
   settings: Settings;
@@ -37,7 +39,7 @@ export default function QuickSettings(props: QuickSettingsProps) {
         <CardHeader>
           <CardTitle className="text-white flex items-center gap-3">
             <div className="p-2 bg-purple-600/20 rounded-lg">
-              <FaClock className="text-purple-400 h-5 w-5" />
+              <FaGear className="text-purple-400 h-5 w-5" />
             </div>
             Quick Settings
           </CardTitle>
@@ -73,7 +75,7 @@ export default function QuickSettings(props: QuickSettingsProps) {
           {/* Email Target */}
           <div className="space-y-3">
             <Label className="text-white font-medium flex items-center gap-2">
-              <FaThLarge className="h-4 w-4 text-green-400" />
+              <FaMailBulk className="h-4 w-4 text-green-400" />
               Email Target:{" "}
               <span className="text-green-400">{props.settings.target}</span>
             </Label>
@@ -137,9 +139,7 @@ export default function QuickSettings(props: QuickSettingsProps) {
                 <TooltipContent className="max-w-sm text-center">
                   <p>
                     When enabled, the session will continue indefinitely until
-                    manually stopped or ran out of unread emails. Useful for
-                    ongoing tasks or when you want to keep working without a
-                    fixed endpoint.
+                    manually stopped or ran out of unread emails.
                   </p>
                 </TooltipContent>
               </Tooltip>
