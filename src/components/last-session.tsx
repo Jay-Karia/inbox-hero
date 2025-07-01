@@ -69,8 +69,8 @@ export default function LastSession() {
             asChild
           >
             <Link href="/triage">
-              <FaPlay className="mr-2 h-3 w-3" />
-              Start Your First Session
+              <FaPlay className="inline mr-2" />
+              Go to Triage Page
             </Link>
           </Button>
 

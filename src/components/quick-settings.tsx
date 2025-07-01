@@ -1,6 +1,5 @@
 import {
   FaClock,
-  FaThLarge,
   FaVolumeUp,
   FaChartLine,
   FaInfinity,

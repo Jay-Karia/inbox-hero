@@ -36,28 +36,24 @@ export default function StartSession(props: StartSessionProps) {
                 </p>
               </div>
             ) : (
-              <div className="grid grid-cols-2 gap-4 text-sm">
+              <div className="grid grid-cols-2 gap-3 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Duration:</span>
-                  <span className="text-white">
-                    {props.settings.duration} min
-                  </span>
+                  <span className="text-gray-300">Duration:</span>
+                  <span className="text-blue-400 font-medium">{props.settings.duration}m</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Target:</span>
-                  <span className="text-white">
-                    {props.settings.target} emails
-                  </span>
+                  <span className="text-gray-300">Target:</span>
+                  <span className="text-green-400 font-medium">{props.settings.target}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Timer:</span>
-                  <span className="text-white">
+                  <span className="text-gray-300">Timer:</span>
+                  <span className={props.settings.showTimer ? "text-green-400" : "text-red-400"}>
                     {props.settings.showTimer ? "On" : "Off"}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-400">Sounds:</span>
-                  <span className="text-white">
+                  <span className="text-gray-300">Sounds:</span>
+                  <span className={props.settings.soundEffects ? "text-green-400" : "text-red-400"}>
                     {props.settings.soundEffects ? "On" : "Off"}
                   </span>
                 </div>
