@@ -3,5 +3,5 @@ export default function CleanPageLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <main className="border h-full antialiased">{children}</main>;
+  return <main className="h-full antialiased">{children}</main>;
 }
