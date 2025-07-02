@@ -1,4 +1,4 @@
-import { atom } from "jotai";
+import { atomWithStorage } from "jotai/utils";
 import { Session } from "../../generated/prisma";
 
-export const sessionsAtom = atom<Session[]>([]);
+export const sessionsAtom = atomWithStorage<Session[]>("sessions", []);

@@ -32,8 +32,8 @@ export default function LastSession() {
       setLoading(true);
       try {
         const response = await axios.get("/api/session");
-
         setSessions(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching sessions:", error);
       } finally {
