@@ -1,3 +1,5 @@
+"use client";
+
 import {
   FaClock,
   FaVolumeUp,
@@ -27,104 +29,102 @@ export default function QuickSettings(props: QuickSettingsProps) {
     key: keyof Settings;
     label: string;
     icon: IconType;
+    color: string;
   }[] = [
-    { key: "showTimer", label: "Show Timer", icon: FaClock },
-    { key: "soundEffects", label: "Sound Effects", icon: FaVolumeUp },
-    { key: "progressBar", label: "Progress Bar", icon: FaChartLine },
+    { key: "showTimer", label: "Show Timer", icon: FaClock, color: "text-blue-400" },
+    { key: "soundEffects", label: "Sound Effects", icon: FaVolumeUp, color: "text-green-400" },
+    { key: "progressBar", label: "Progress Bar", icon: FaChartLine, color: "text-purple-400" },
   ];
+
   return (
-    <>
-      <Card className="bg-gradient-to-br from-gray-900/80 to-gray-800/60 border-gray-600">
-        <CardHeader>
-          <CardTitle className="text-white flex items-center gap-3">
-            <div className="p-2 bg-purple-600/20 rounded-lg">
-              <FaGear className="text-purple-400 h-5 w-5" />
-            </div>
-            Quick Settings
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          {/* Duration Slider */}
-          <div className="space-y-3">
-            <Label className="text-white font-medium flex items-center gap-2">
+    <Card className="bg-gray-900/60 border-gray-700/50 shadow-xl backdrop-blur-sm">
+      <CardHeader className="pb-4">
+        <CardTitle className="text-white flex items-center gap-3 text-lg">
+          <div className="p-2 bg-purple-500/20 rounded-lg">
+            <FaGear className="text-purple-400 h-4 w-4" />
+          </div>
+          Quick Settings
+        </CardTitle>
+      </CardHeader>
+
+      <CardContent className="space-y-6">
+        {/* Duration Slider */}
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <Label className="text-gray-200 font-medium flex items-center gap-2">
               <FaClock className="h-4 w-4 text-blue-400" />
-              Session Duration:{" "}
-              <span className="text-blue-400">
-                {props.settings.duration} min
-              </span>
+              Duration
             </Label>
-            <Slider
-              value={[props.settings.duration]}
-              onValueChange={(value: unknown[]) =>
-                props.handleSettingChange("duration", value[0])
-              }
-              min={5}
-              max={60}
-              step={5}
-              className="w-full"
-              disabled={props.settings.endlessMode}
-            />
-            <div className="flex justify-between text-xs text-gray-500">
-              <span>5 min</span>
-              <span>30 min</span>
-              <span>60 min</span>
-            </div>
+            <span className="text-blue-400 font-semibold text-sm bg-blue-500/10 px-2 py-1 rounded">
+              {props.settings.duration}m
+            </span>
           </div>
+          <Slider
+            value={[props.settings.duration]}
+            onValueChange={(value: unknown[]) =>
+              props.handleSettingChange("duration", value[0])
+            }
+            min={5}
+            max={60}
+            step={5}
+            className="w-full"
+            disabled={props.settings.endlessMode}
+          />
+        </div>
 
-          {/* Email Target */}
-          <div className="space-y-3">
-            <Label className="text-white font-medium flex items-center gap-2">
+        {/* Email Target */}
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <Label className="text-gray-200 font-medium flex items-center gap-2">
               <FaMailBulk className="h-4 w-4 text-green-400" />
-              Email Target:{" "}
-              <span className="text-green-400">{props.settings.target}</span>
+              Target
             </Label>
-            <Slider
-              value={[props.settings.target]}
-              onValueChange={(value: unknown[]) =>
-                props.handleSettingChange("target", value[0])
-              }
-              min={5}
-              max={100}
-              step={5}
-              className="w-full"
-              disabled={props.settings.endlessMode}
-            />
-            <div className="flex justify-between text-xs text-gray-500">
-              <span>5</span>
-              <span>50</span>
-              <span>100</span>
-            </div>
+            <span className="text-green-400 font-semibold text-sm bg-green-500/10 px-2 py-1 rounded">
+              {props.settings.target}
+            </span>
           </div>
+          <Slider
+            value={[props.settings.target]}
+            onValueChange={(value: unknown[]) =>
+              props.handleSettingChange("target", value[0])
+            }
+            min={5}
+            max={100}
+            step={5}
+            className="w-full"
+            disabled={props.settings.endlessMode}
+          />
+        </div>
 
-          <Separator className="bg-gray-600/50" />
+        <Separator className="bg-gray-700/40" />
 
-          {/* Feature Toggles */}
-          <div className="grid grid-cols-1 gap-3">
-            {toggleSettings.map(({ key, label, icon: Icon }) => (
-              <div
-                key={key}
-                className="flex items-center justify-between p-3 rounded-lg bg-gray-800/40"
+        {/* Feature Toggles */}
+        <div className="space-y-3">
+          {toggleSettings.map(({ key, label, icon: Icon, color }) => (
+            <div
+              key={key}
+              className="flex items-center justify-between p-3 rounded-lg bg-gray-800/30 hover:bg-gray-800/50 transition-colors"
+            >
+              <Label
+                htmlFor={key}
+                className="text-gray-200 flex items-center gap-3 cursor-pointer"
               >
-                <Label
-                  htmlFor={key}
-                  className="text-white flex items-center gap-2 cursor-pointer"
-                >
-                  <Icon className="h-4 w-4 text-gray-400" />
-                  {label}
-                </Label>
-                <Switch
-                  id={key}
-                  checked={props.settings[key as keyof Settings] as boolean}
-                  onCheckedChange={(checked: boolean) =>
-                    props.handleSettingChange(key, checked)
-                  }
-                />
-              </div>
-            ))}
-          </div>
+                <Icon className={`h-4 w-4 ${color}`} />
+                {label}
+              </Label>
+              <Switch
+                id={key}
+                checked={props.settings[key as keyof Settings] as boolean}
+                onCheckedChange={(checked: boolean) =>
+                  props.handleSettingChange(key, checked)
+                }
+              />
+            </div>
+          ))}
+        </div>
 
           {/* Endless Mode */}
-          <div className="flex items-center justify-between p-3 rounded-lg bg-blue-900/40">
+          <div className="flex items-center justify-between p-4 rounded-lg bg-blue-900/40">
             <Label
               htmlFor="endlessMode"
               className="text-white flex items-center gap-2 cursor-pointer"
@@ -153,6 +153,5 @@ export default function QuickSettings(props: QuickSettingsProps) {
           </div>
         </CardContent>
       </Card>
-    </>
   );
 }

@@ -5,9 +5,9 @@ export default function TriageSkeleton() {
     <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto animate-pulse">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="h-32 bg-gray-700 rounded-lg"></div>
-          <div className="h-32 bg-gray-700 rounded-lg"></div>
-          <div className="h-32 bg-gray-700 rounded-lg"></div>
+          <div className="h-28 bg-gray-700 rounded-lg"></div>
+          <div className="h-28 bg-gray-700 rounded-lg"></div>
+          <div className="h-28 bg-gray-700 rounded-lg"></div>
         </div>
         <Separator className="my-8 bg-gray-800" />
         {/* Main grid layout - QuickSettings and StartSession */}
@@ -44,7 +44,7 @@ export default function TriageSkeleton() {
             </div>
 
             {/* Separator */}
-            <div className="h-px bg-gray-600 w-full"></div>
+            <Separator className="my-8 bg-gray-800" />
 
             {/* Toggle switches */}
             <div className="space-y-3">
@@ -111,12 +111,13 @@ export default function TriageSkeleton() {
           </div>
         </div>
 
+        <Separator className="my-8 bg-gray-800" />
+
         {/* AllSessions skeleton */}
         <div className="space-y-6">
           {/* Section header */}
           <div className="flex items-center justify-between">
             <div className="h-6 bg-gray-700 rounded w-32"></div>
-            <div className="h-8 bg-gray-700 rounded w-20"></div>
           </div>
 
           {/* Sessions grid */}
