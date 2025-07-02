@@ -13,8 +13,13 @@ export default function SessionsSummary({ sessions }: SessionsSummaryProps) {
     (session) => session.target <= session.emailsProcessed
   ).length;
 
+  const averageDuration = sessions.reduce(
+    (total, session) => total + (session.duration || 0),
+    0
+  ) / sessions.length;
+
   const sessionsSummary = {
-    averageDuration: 100,
+    averageDuration: averageDuration || 0,
     totalSessions: sessions.length,
     successRate: Math.round(
       (targetAchieved / sessions.length) * 100
@@ -65,7 +70,7 @@ export default function SessionsSummary({ sessions }: SessionsSummaryProps) {
         <>
           <div className="text-center text-gray-400">
             <p>No sessions available.</p>
-            <p className="mt-2">Start a new session to see statistics.</p>
+            <p className="mt-2">Start a new session to see summary.</p>
           </div>
         </>
       )}
