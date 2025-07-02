@@ -1,12 +1,25 @@
 import { FaClock, FaThLarge } from "react-icons/fa";
 import { Session } from "../../generated/prisma";
 import { Card, CardContent } from "./ui/card";
+import {formatDuration} from "@/lib/date";
 
 interface SessionsSummaryProps {
   sessions: Session[];
 }
 
 export default function SessionsSummary({ sessions }: SessionsSummaryProps) {
+  const targetAchieved = sessions.filter(
+    (session) => session.target <= session.emailsProcessed
+  ).length;
+
+  const sessionsSummary = {
+    averageDuration: 100,
+    totalSessions: sessions.length,
+    successRate: Math.round(
+      (targetAchieved / sessions.length) * 100
+    ) || 0,
+  };
+
   return (
     <div>
       {sessions.length > 0 ? (
@@ -17,7 +30,7 @@ export default function SessionsSummary({ sessions }: SessionsSummaryProps) {
                 <FaClock className="h-5 w-5 text-blue-400" />
               </div>
               <div className="text-xl font-bold text-white">
-                {/* {sessionStats.totalProcessed} */}
+                {formatDuration(sessionsSummary.averageDuration)}
               </div>
               <div className="text-xs text-gray-400">Average Duration</div>
             </CardContent>
@@ -29,7 +42,7 @@ export default function SessionsSummary({ sessions }: SessionsSummaryProps) {
                 <FaThLarge className="h-5 w-5 text-purple-400" />
               </div>
               <div className="text-xl font-bold text-white">
-                {/* {sessionStats.totalSessions} */}
+                {sessionsSummary.totalSessions}
               </div>
               <div className="text-xs text-gray-400">Total Sessions</div>
             </CardContent>
@@ -41,14 +54,7 @@ export default function SessionsSummary({ sessions }: SessionsSummaryProps) {
                 <FaClock className="h-5 w-5 text-orange-400" />
               </div>
               <div className="text-xl font-bold text-white">
-                {/* {sessionStats.totalSessions > 0
-              ? Math.round(
-                  (sessionStats.completedSessions /
-                    sessionStats.totalSessions) *
-                    100
-                )
-              : 0}
-            % */}
+                {sessionsSummary.successRate}%
               </div>
               <div className="text-xs text-gray-400">Success Rate</div>
             </CardContent>
