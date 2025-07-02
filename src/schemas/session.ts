@@ -11,6 +11,7 @@ export const SessionSchema = z.object({
   archived: z.number().int().min(0),
   deleted: z.number().int().min(0),
   skipped: z.number().int().min(0),
+  target: z.number().int().min(0),
   createdAt: z.date(),
   updatedAt: z.date(),
 }) satisfies z.ZodType<Session>;
@@ -21,7 +22,8 @@ export const UpdateSessionSchema = z.object({
   endTime: z.date(),
   duration: z.number().int().min(0),
   emailsProcessed: z.number().int().min(0),
-  archived: z.number().int().min(0).default(0),
-  deleted: z.number().int().min(0).default(0),
-  skipped: z.number().int().min(0).default(0),
+  archived: z.number().int().min(0),
+  deleted: z.number().int().min(0),
+  skipped: z.number().int().min(0),
+  target: z.number().int().min(0),
 });

@@ -28,10 +28,10 @@ app.get("/", clerkMiddleware(), async (c) => {
 
 // Add a new session
 app.post("/", clerkMiddleware(), async (c) => {
-  // const auth = getAuth(c);
-  // if (!auth?.userId) {
-  //   return c.text("Unauthorized", 401);
-  // }
+  const auth = getAuth(c);
+  if (!auth?.userId) {
+    return c.text("Unauthorized", 401);
+  }
 
   try {
     const body = await c.req.json();
@@ -50,9 +50,9 @@ app.post("/", clerkMiddleware(), async (c) => {
     const parsedData = parsedBody.data;
 
     // Check for user
-    // if (auth.userId !== parsedData.userId) {
-    //   return c.text("User not found!", 401);
-    // }
+    if (auth.userId !== parsedData.userId) {
+      return c.text("User not found!", 401);
+    }
 
     // Create the session in the database
     const newSession = await prisma.session.create({
@@ -64,6 +64,7 @@ app.post("/", clerkMiddleware(), async (c) => {
         archived: parsedData.archived,
         skipped: parsedData.skipped,
         deleted: parsedData.deleted,
+        target: parsedData.target,
         userId: parsedData.userId,
       },
     });
