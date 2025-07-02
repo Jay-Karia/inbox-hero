@@ -2,7 +2,7 @@
 
 import { QUICK_SPRINT, FOCUSED_SESSION, POWER_HOUR } from "@/constants";
 import { Label } from "@radix-ui/react-label";
-import { FaPlay, FaBolt, FaThLarge, FaRocket, FaClock, FaVolumeUp, FaInfinity } from "react-icons/fa";
+import { FaPlay, FaBolt, FaThLarge, FaRocket, FaClock, FaVolumeUp, FaInfinity, FaMailBulk, FaStopwatch } from "react-icons/fa";
 import { Button } from "./ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "./ui/card";
 import { Settings } from "@/types/settings";
@@ -41,7 +41,7 @@ export default function StartSession(props: StartSessionProps) {
   ];
 
   return (
-    <Card className="bg-gray-900/60 border-gray-700/50 shadow-xl backdrop-blur-sm">
+    <Card className="bg-gradient-to-br from-gray-900/70 via-slate-800/60 to-gray-900/80 border-gray-700/50 shadow-xl backdrop-blur-sm">
       <CardHeader className="pb-4">
         <CardTitle className="text-white flex items-center gap-3 text-lg">
           <div className="p-2 bg-green-500/20 rounded-lg">
@@ -53,7 +53,7 @@ export default function StartSession(props: StartSessionProps) {
 
       <CardContent className="space-y-6">
         {/* Session Preview */}
-        <div className="space-y-3 p-4 bg-gray-800/30 rounded-lg">
+        <div className="space-y-3 p-4 bg-white/3 backdrop-blur-md rounded-lg">
           <div className="flex items-center gap-2">
             <h4 className="text-white font-medium">Session Preview</h4>
             {props.settings.endlessMode && (
@@ -73,7 +73,7 @@ export default function StartSession(props: StartSessionProps) {
             <div className="grid grid-cols-2 gap-3">
               <div className="flex items-center justify-between p-2 rounded">
                 <div className="flex items-center gap-2">
-                  <FaClock className="h-3 w-3 text-blue-400" />
+                  <FaStopwatch className="h-3 w-3 text-blue-400" />
                   <span className="text-gray-300 text-sm">Duration</span>
                 </div>
                 <span className="text-blue-400 font-medium text-sm">
@@ -83,7 +83,7 @@ export default function StartSession(props: StartSessionProps) {
 
               <div className="flex items-center justify-between p-2 rounded">
                 <div className="flex items-center gap-2">
-                  <FaThLarge className="h-3 w-3 text-green-400" />
+                  <FaMailBulk className="h-3 w-3 text-green-400" />
                   <span className="text-gray-300 text-sm">Target</span>
                 </div>
                 <span className="text-green-400 font-medium text-sm">
@@ -135,7 +135,7 @@ export default function StartSession(props: StartSessionProps) {
             key={index}
             variant="ghost"
                   size="sm"
-                  className="justify-start p-1 h-auto bg-gray-800/30 hover:bg-gray-800/50 border-gray-700/40 hover:border-gray-600/60 transition-colors cursor-pointer"
+                  className="justify-start p-1 py-[0.4rem] h-auto bg-gray-800/50 hover:bg-gray-800/70 border-gray-700/60 hover:border-gray-600/80 transition-colors cursor-pointer"
                   onClick={() => props.setSettings(preset.settings)}
                 >
                   <Icon className={`mr-3 h-4 w-4 ${preset.color}`} />
@@ -158,7 +158,7 @@ export default function StartSession(props: StartSessionProps) {
         {/* Start Button */}
         <Button
           size="lg"
-          className="w-full bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-700 hover:to-green-700 text-white font-bold py-4 text-lg transition-all duration-300 hover:shadow-lg"
+          className="w-full bg-gradient-to-r from-blue-700 to-green-700 hover:from-blue-800 hover:to-green-800 text-white font-bold py-[1.30rem] text-lg transition-all duration-300 hover:shadow-lg"
           onClick={() => props.handleStartSession(props.settings)}
         >
           <FaPlay className="mr-2 h-5 w-5" />

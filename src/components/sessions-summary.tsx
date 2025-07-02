@@ -1,4 +1,4 @@
-import { FaClock, FaThLarge } from "react-icons/fa";
+import { FaClock, FaThLarge, FaTrophy } from "react-icons/fa";
 import { Session } from "../../generated/prisma";
 import { CardContent } from "./ui/card";
 import {formatDuration} from "@/lib/date";
@@ -52,7 +52,7 @@ export default function SessionsSummary({ sessions }: SessionsSummaryProps) {
           <CardSpotlight className="bg-gray-900 border-gray-800 p-0">
             <CardContent className="p-4 text-center z-20 relative">
               <div className="flex justify-center mb-2">
-                <FaClock className="h-5 w-5 text-orange-400" />
+                <FaTrophy className="h-5 w-5 text-orange-400" />
               </div>
               <div className="text-xl font-bold text-white">
                 {sessionsSummary.successRate}%
