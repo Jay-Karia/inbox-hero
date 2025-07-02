@@ -9,7 +9,7 @@ interface SessionsSummaryProps {
 export default function SessionsSummary({ sessions }: SessionsSummaryProps) {
   return (
     <div>
-      {sessions.length > 0 && (
+      {sessions.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Card className="bg-gray-900 border-gray-800">
             <CardContent className="p-4 text-center">
@@ -54,6 +54,13 @@ export default function SessionsSummary({ sessions }: SessionsSummaryProps) {
             </CardContent>
           </Card>
         </div>
+      ) : (
+        <>
+          <div className="text-center text-gray-400">
+            <p>No sessions available.</p>
+            <p className="mt-2">Start a new session to see statistics.</p>
+          </div>
+        </>
       )}
     </div>
   );

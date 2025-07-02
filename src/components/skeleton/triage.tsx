@@ -1,7 +1,15 @@
+import { Separator } from "../ui/separator";
+
 export default function TriageSkeleton() {
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto animate-pulse">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="h-32 bg-gray-700 rounded-lg"></div>
+          <div className="h-32 bg-gray-700 rounded-lg"></div>
+          <div className="h-32 bg-gray-700 rounded-lg"></div>
+        </div>
+        <Separator className="my-8 bg-gray-800" />
         {/* Main grid layout - QuickSettings and StartSession */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
           {/* QuickSettings skeleton */}
@@ -43,7 +51,10 @@ export default function TriageSkeleton() {
               {/* <div className="h-4 bg-gray-700 rounded w-24"></div> */}
               <div className="grid grid-cols-1 gap-3">
                 {[1, 2, 3, 4].map((i) => (
-                  <div key={i} className="flex items-center justify-between p-3 bg-gray-800/40 rounded-lg">
+                  <div
+                    key={i}
+                    className="flex items-center justify-between p-3 bg-gray-800/40 rounded-lg"
+                  >
                     <div className="flex items-center gap-2">
                       <div className="h-4 w-4 bg-gray-700 rounded"></div>
                       <div className="h-4 bg-gray-700 rounded w-24"></div>
@@ -81,7 +92,10 @@ export default function TriageSkeleton() {
               <div className="h-4 bg-gray-700 rounded w-24"></div>
               <div className="grid grid-cols-1 gap-2">
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="bg-gray-800/30 rounded-lg p-3 flex items-center gap-3">
+                  <div
+                    key={i}
+                    className="bg-gray-800/30 rounded-lg p-3 flex items-center gap-3"
+                  >
                     <div className="h-4 w-4 bg-gray-700 rounded"></div>
                     <div className="space-y-1">
                       <div className="h-4 bg-gray-700 rounded w-24"></div>
