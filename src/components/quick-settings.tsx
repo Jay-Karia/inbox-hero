@@ -58,14 +58,14 @@ export default function QuickSettings(props: QuickSettingsProps) {
               onValueChange={(value: unknown[]) =>
                 props.handleSettingChange("duration", value[0])
               }
-              min={10}
+              min={5}
               max={60}
               step={5}
               className="w-full"
               disabled={props.settings.endlessMode}
             />
             <div className="flex justify-between text-xs text-gray-500">
-              <span>10 min</span>
+              <span>5 min</span>
               <span>30 min</span>
               <span>60 min</span>
             </div>
@@ -83,14 +83,14 @@ export default function QuickSettings(props: QuickSettingsProps) {
               onValueChange={(value: unknown[]) =>
                 props.handleSettingChange("target", value[0])
               }
-              min={10}
+              min={5}
               max={100}
-              step={10}
+              step={5}
               className="w-full"
               disabled={props.settings.endlessMode}
             />
             <div className="flex justify-between text-xs text-gray-500">
-              <span>10</span>
+              <span>5</span>
               <span>50</span>
               <span>100</span>
             </div>
