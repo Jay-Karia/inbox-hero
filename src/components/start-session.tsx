@@ -68,7 +68,7 @@ export default function StartSession(props: StartSessionProps) {
               <Button
                 variant="outline"
                 size="sm"
-                className="bg-gray-800/30 hover:bg-gray-700/50 border-gray-600 justify-start py-[1.30rem]"
+                className="bg-gray-800/30 hover:bg-gray-700/50 border-gray-600 justify-start py-[1.40rem]"
                 onClick={() => props.setSettings(QUICK_SPRINT)}
               >
                 <FaBolt className="mr-2 h-4 w-4 text-yellow-400" />
@@ -83,7 +83,7 @@ export default function StartSession(props: StartSessionProps) {
               <Button
                 variant="outline"
                 size="sm"
-                className="bg-gray-800/30 hover:bg-gray-700/50 border-gray-600 justify-start py-[1.30rem]"
+                className="bg-gray-800/30 hover:bg-gray-700/50 border-gray-600 justify-start py-[1.40rem]"
                 onClick={() => props.setSettings(FOCUSED_SESSION)}
               >
                 <FaThLarge className="mr-2 h-4 w-4 text-blue-400" />
@@ -98,7 +98,7 @@ export default function StartSession(props: StartSessionProps) {
               <Button
                 variant="outline"
                 size="sm"
-                className="bg-gray-800/30 hover:bg-gray-700/50 border-gray-600 justify-start py-[1.30rem]"
+                className="bg-gray-800/30 hover:bg-gray-700/50 border-gray-600 justify-start py-[1.40rem]"
                 onClick={() => props.setSettings(POWER_HOUR)}
               >
                 <FaRocket className="mr-2 h-4 w-4 text-green-400" />
