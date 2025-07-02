@@ -1,11 +1,12 @@
 "use client";
 
-import { useAtomValue } from "jotai";
-import { sessionsAtom } from "@/atoms/sessions";
+import { Session } from "../../generated/prisma";
 
-export default function AllSessions() {
-  const sessions = useAtomValue(sessionsAtom);
+interface AllSessionsProps {
+  sessions: Session[];
+}
 
+export default function AllSessions({ sessions }: AllSessionsProps) {
   return (
     <div className="text-white">
       <h2 className="text-xl font-bold mb-4">
