@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useAtomValue } from "jotai";
+import { useEffect, useState } from "react";
+import { useAtom } from "jotai";
 import { sessionsAtom } from "@/atoms/sessions";
 import QuickSettings from "./quick-settings";
 import { Settings } from "@/types/settings";
@@ -10,18 +10,33 @@ import StartSession from "./start-session";
 import AllSessions from "./all-sessions";
 import { Separator } from "./ui/separator";
 import SessionsSummary from "./sessions-summary";
+import axios from "axios";
 
 interface TriageProps {
   handleStartSession: (settings: unknown) => void;
 }
 
 export default function Triage({ handleStartSession }: TriageProps) {
-  const sessions = useAtomValue(sessionsAtom);
+  const [sessions, setSessions] = useAtom(sessionsAtom);
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
 
   const handleSettingChange = (key: string, value: unknown) => {
     setSettings((prev) => ({ ...prev, [key]: value }));
   };
+
+  useEffect(() => {
+    const fetchSessions = async () => {
+      try {
+        const response = await axios.get("/api/session");
+        setSessions(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching sessions:", error);
+      }
+    };
+
+    fetchSessions();
+  }, [setSessions]);
 
   return (
     <div className="min-h-screen">
