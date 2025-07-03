@@ -8,3 +8,7 @@ export const settingsAtom = atomWithStorage<Settings>(
   "settings",
   DEFAULT_SETTINGS
 );
+export const sessionActiveAtom = atomWithStorage<boolean>(
+  "sessionActive",
+  false
+);

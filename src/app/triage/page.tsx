@@ -1,31 +1,31 @@
 "use client";
 
-import { useState } from "react";
-import { useUser } from "@clerk/nextjs";
 import TriageSkeleton from "@/components/skeleton/triage";
 import Triage from "@/components/triage";
-import { Settings } from "@/types/settings";
 import ActiveSession from "@/components/active-session";
+import { useAtom } from "jotai";
+import { sessionActiveAtom } from "@/atoms";
+import ActiveSessionSkeleton from "@/components/skeleton/active-session";
+import { useUser } from "@clerk/nextjs";
 
 export default function TriagePage() {
+  const [isSessionActive, setIsSessionActive] = useAtom(sessionActiveAtom);
   const { isLoaded } = useUser();
-  const [sessionStarted, setSessionStarted] = useState(false);
 
-  const handleStartSession = (settings: Settings) => {
-    console.log("Starting session with settings:", settings);
-    setSessionStarted(true);
+  const handleStartSession = () => {
+    setIsSessionActive(true);
   };
 
   if (!isLoaded) {
-    return <TriageSkeleton />;
+    return isSessionActive ? <ActiveSessionSkeleton /> : <TriageSkeleton />;
   }
 
   return (
     <div className="min-h-screen">
-      {!sessionStarted ? (
+      {!isSessionActive ? (
         <Triage handleStartSession={handleStartSession} />
       ) : (
-        <ActiveSession setSessionStarted={setSessionStarted} />
+        <ActiveSession setIsSessionActive={setIsSessionActive} />
       )}
     </div>
   );
