@@ -4,12 +4,14 @@ import { useState } from "react";
 import { useUser } from "@clerk/nextjs";
 import TriageSkeleton from "@/components/skeleton/triage";
 import Triage from "@/components/triage";
+import { Settings } from "@/types/settings";
+import ActiveSession from "@/components/active-session";
 
 export default function TriagePage() {
   const { isLoaded } = useUser();
   const [sessionStarted, setSessionStarted] = useState(false);
 
-  const handleStartSession = (settings: unknown) => {
+  const handleStartSession = (settings: Settings) => {
     console.log("Starting session with settings:", settings);
     setSessionStarted(true);
   };
@@ -23,17 +25,7 @@ export default function TriagePage() {
       {!sessionStarted ? (
         <Triage handleStartSession={handleStartSession} />
       ) : (
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <h2 className="text-2xl text-white mb-4">Session Active</h2>
-            <button
-              onClick={() => setSessionStarted(false)}
-              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
-            >
-              End Session
-            </button>
-          </div>
-        </div>
+        <ActiveSession setSessionStarted={setSessionStarted} />
       )}
     </div>
   );

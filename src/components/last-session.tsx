@@ -19,7 +19,7 @@ import axios from "axios";
 import LastSessionSkeleton from "./skeleton/last-session";
 import { formatDate, formatDuration } from "@/lib/date";
 import { useAtom } from "jotai";
-import { sessionsAtom } from "@/atoms/sessions";
+import { sessionsAtom } from "@/atoms";
 
 export default function LastSession() {
   const [loading, setLoading] = useState(true);

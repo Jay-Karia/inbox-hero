@@ -1,11 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAtom } from "jotai";
-import { sessionsAtom } from "@/atoms/sessions";
+import { sessionsAtom, settingsAtom } from "@/atoms";
 import QuickSettings from "./quick-settings";
 import { Settings } from "@/types/settings";
-import { DEFAULT_SETTINGS } from "@/constants";
 import StartSession from "./start-session";
 import AllSessions from "./all-sessions";
 import { Separator } from "./ui/separator";
@@ -14,14 +13,14 @@ import axios from "axios";
 import EmailsSummary from "./emails-summary";
 
 interface TriageProps {
-  handleStartSession: (settings: unknown) => void;
+  handleStartSession: (settings: Settings) => void;
 }
 
 export default function Triage({ handleStartSession }: TriageProps) {
   const [sessions, setSessions] = useAtom(sessionsAtom);
-  const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
+  const [settings, setSettings] = useAtom(settingsAtom);
 
-  const handleSettingChange = (key: string, value: unknown) => {
+  const handleSettingChange = (key: keyof Settings, value: unknown) => {
     setSettings((prev) => ({ ...prev, [key]: value }));
   };
 
