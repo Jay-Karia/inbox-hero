@@ -120,8 +120,9 @@ export default function TriageSkeleton() {
         {/* AllSessions skeleton */}
         <div className="space-y-6">
           {/* Section header */}
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-center flex-col gap-4">
             <div className="h-6 bg-gray-700 rounded w-32"></div>
+            <div className="h-6 bg-gray-700 rounded w-42"></div>
           </div>
 
           {/* Sessions grid */}

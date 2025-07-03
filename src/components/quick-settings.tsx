@@ -71,7 +71,7 @@ export default function QuickSettings(props: QuickSettingsProps) {
               <FaStopwatch className="h-4 w-4 text-blue-400" />
               Duration
             </Label>
-            <span className="text-blue-400 font-semibold text-sm bg-blue-500/10 px-2 py-1 rounded">
+            <span className="text-blue-400 font-medium text-sm bg-blue-500/10 px-2 py-1 rounded">
               {props.settings.duration}m
             </span>
           </div>
@@ -95,7 +95,7 @@ export default function QuickSettings(props: QuickSettingsProps) {
               <FaMailBulk className="h-4 w-4 text-green-400" />
               Target
             </Label>
-            <span className="text-green-400 font-semibold text-sm bg-green-500/10 px-2 py-1 rounded">
+            <span className="text-green-400 font-medium text-sm bg-green-500/10 px-2 py-1 rounded">
               {props.settings.target}
             </span>
           </div>
