@@ -4,11 +4,13 @@ export default function TriageSkeleton() {
   return (
     <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto animate-pulse space-y-8">
+        {/* Sessions Summary */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="h-28 bg-gray-700 rounded-lg"></div>
           <div className="h-28 bg-gray-700 rounded-lg"></div>
           <div className="h-28 bg-gray-700 rounded-lg"></div>
         </div>
+        {/* Emails Summary */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="h-28 bg-gray-700 rounded-lg"></div>
           <div className="h-28 bg-gray-700 rounded-lg"></div>

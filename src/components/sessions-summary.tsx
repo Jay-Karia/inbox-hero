@@ -1,31 +1,42 @@
 import { FaClock, FaThLarge, FaTrophy } from "react-icons/fa";
 import { Session } from "../../generated/prisma";
 import { CardContent } from "./ui/card";
-import {formatDuration} from "@/lib/date";
-import {CardSpotlight} from "./ui/card-spotlight";
-import {Separator} from "./ui/separator";
+import { formatDuration } from "@/lib/date";
+import { CardSpotlight } from "./ui/card-spotlight";
+import { Separator } from "./ui/separator";
 
 interface SessionsSummaryProps {
   sessions: Session[];
+  isLoading: boolean;
 }
 
-export default function SessionsSummary({ sessions }: SessionsSummaryProps) {
+export default function SessionsSummary({
+  sessions,
+  isLoading,
+}: SessionsSummaryProps) {
   const targetAchieved = sessions.filter(
     (session) => session.target <= session.emailsProcessed
   ).length;
 
-  const averageDuration = sessions.reduce(
-    (total, session) => total + (session.duration || 0),
-    0
-  ) / sessions.length;
+  const averageDuration =
+    sessions.reduce((total, session) => total + (session.duration || 0), 0) /
+    sessions.length;
 
   const sessionsSummary = {
     averageDuration: averageDuration || 0,
     totalSessions: sessions.length,
-    successRate: Math.round(
-      (targetAchieved / sessions.length) * 100
-    ) || 0,
+    successRate: Math.round((targetAchieved / sessions.length) * 100) || 0,
   };
+
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 animate-pulse">
+        <div className="h-28 bg-gray-700 rounded-lg"></div>
+        <div className="h-28 bg-gray-700 rounded-lg"></div>
+        <div className="h-28 bg-gray-700 rounded-lg"></div>
+      </div>
+    );
+  }
 
   return (
     <div>

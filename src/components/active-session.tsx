@@ -14,10 +14,9 @@ export default function ActiveSession({
   const settings = useAtomValue(settingsAtom);
   const user = useUser().user;
 
-  if (!user) return;
-
   const handleEndSession = () => {
-    const body = {
+    // Mock session data
+    const sessionData = {
       startTime: new Date(),
       endTime: new Date(),
       duration: 100,
@@ -26,16 +25,17 @@ export default function ActiveSession({
       skipped: 0,
       deleted: 3,
       target: 10,
-      userId: user.id,
+      userId: user?.id,
     };
 
     // Create the session
-    axios.post('/api/session', body)
-      .then(response => {
-        console.log('Session saved successfully:', response.data);
+    axios
+      .post("/api/session", sessionData)
+      .then((response) => {
+        console.log("Session saved successfully:", response.data);
       })
-      .catch(error => {
-        console.error('Error saving session:', error);
+      .catch((error) => {
+        console.error("Error saving session:", error);
       });
 
     setIsSessionActive(false);

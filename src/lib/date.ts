@@ -31,7 +31,7 @@ export const formatDate = (date: Date | string) => {
 export const formatDuration = (seconds: number | null) => {
   if (!seconds) return "Unknown";
   const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds % 60;
+  const remainingSeconds = Math.round(seconds % 60);
   if (minutes > 0) {
     return `${minutes}m ${remainingSeconds}s`;
   }
