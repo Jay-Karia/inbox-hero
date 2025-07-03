@@ -6,11 +6,12 @@ import StatsOverview from "./stats-overview";
 import LastSession from "./last-session";
 import axios from "axios";
 import NextSession from "./next-session";
+import {Stats} from "../../generated/prisma";
 
 export default function Welcome() {
   const { user } = useUser();
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [stats, setStats] = useState(null);
+  const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

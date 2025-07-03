@@ -158,7 +158,7 @@ export default function StartSession(props: StartSessionProps) {
         {/* Start Button */}
         <Button
           size="lg"
-          className="w-full bg-gradient-to-r from-blue-700 to-green-700 hover:from-blue-800 hover:to-green-800 text-white font-bold py-[1.30rem] text-lg transition-all duration-300 hover:shadow-lg"
+          className="w-full bg-gradient-to-r from-blue-700 to-green-700 hover:from-blue-800 hover:to-green-800 text-white font-bold py-[1.30rem] text-lg transition-all duration-300 hover:shadow-lg cursor-pointer"
           onClick={() => props.handleStartSession(props.settings)}
         >
           <FaPlay className="mr-2 h-5 w-5" />
