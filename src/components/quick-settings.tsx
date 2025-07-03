@@ -19,6 +19,7 @@ import React from "react";
 import { IconType } from "react-icons/lib";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { FaGear } from "react-icons/fa6";
+import { Button } from "./ui/button";
 
 interface QuickSettingsProps {
   settings: Settings;
@@ -64,6 +65,7 @@ export default function QuickSettings(props: QuickSettingsProps) {
       </CardHeader>
 
       <CardContent className="space-y-6">
+        {/* TODO: add custom values */}
         {/* Duration Slider */}
         <div className="space-y-3">
           <div className="flex items-center justify-between">
@@ -86,6 +88,66 @@ export default function QuickSettings(props: QuickSettingsProps) {
             className="w-full cursor-grab"
             disabled={props.settings.endlessMode}
           />
+          <div className="flex gap-2 mt-2 justify-between">
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                variant="outline"
+                className="bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20 hover:border-blue-500/50"
+                onClick={() =>
+                  props.handleSettingChange(
+                    "duration",
+                    Math.min(255, props.settings.duration + 1)
+                  )
+                }
+                disabled={props.settings.endlessMode}
+              >
+                +1
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                className="bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20 hover:border-blue-500/50"
+                onClick={() =>
+                  props.handleSettingChange(
+                    "duration",
+                    Math.min(255, props.settings.duration + 5)
+                  )
+                }
+                disabled={props.settings.endlessMode}
+              >
+                +5
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                className="bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20 hover:border-blue-500/50"
+                onClick={() =>
+                  props.handleSettingChange(
+                    "duration",
+                    Math.min(255, props.settings.duration + 10)
+                  )
+                }
+                disabled={props.settings.endlessMode}
+              >
+                +10
+              </Button>
+            </div>
+            <Button
+              size="sm"
+              variant="outline"
+              className="bg-blue-500/10 border-blue-500/30 text-blue-400 hover:bg-blue-500/20 hover:border-blue-500/50"
+              onClick={() =>
+                props.handleSettingChange(
+                  "duration",
+                  Math.max(0, props.settings.duration - 1)
+                )
+              }
+              disabled={props.settings.endlessMode}
+            >
+              -1
+            </Button>
+          </div>
         </div>
 
         {/* Email Target */}
@@ -110,6 +172,57 @@ export default function QuickSettings(props: QuickSettingsProps) {
             className="w-full cursor-grab"
             disabled={props.settings.endlessMode}
           />
+          <div className="flex gap-2 mt-2 justify-between">
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                variant="outline"
+                className="bg-green-500/10 border-green-500/30 text-green-400 hover:bg-green-500/20 hover:border-green-500/50"
+                onClick={() =>
+                  props.handleSettingChange("target", Math.min(255, props.settings.target + 1))
+                }
+                disabled={props.settings.endlessMode}
+              >
+                +1
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                className="bg-green-500/10 border-green-500/30 text-green-400 hover:bg-green-500/20 hover:border-green-500/50"
+                onClick={() =>
+                  props.handleSettingChange("target", Math.min(255, props.settings.target + 5))
+                }
+                disabled={props.settings.endlessMode}
+              >
+                +5
+              </Button>
+              <Button
+                size="sm"
+                variant="outline"
+                className="bg-green-500/10 border-green-500/30 text-green-400 hover:bg-green-500/20 hover:border-green-500/50"
+                onClick={() =>
+                  props.handleSettingChange(
+                    "target",
+                    Math.min(255, props.settings.target + 10)
+                  )
+                }
+                disabled={props.settings.endlessMode}
+              >
+                +10
+              </Button>
+            </div>
+            <Button
+              size="sm"
+              variant="outline"
+              className="bg-green-500/10 border-green-500/30 text-green-400 hover:bg-green-500/20 hover:border-green-500/50"
+              onClick={() =>
+                props.handleSettingChange("target", Math.max(0, props.settings.target - 1))
+              }
+              disabled={props.settings.endlessMode}
+            >
+              -1
+            </Button>
+          </div>
         </div>
 
         <Separator className="bg-gray-700/40" />

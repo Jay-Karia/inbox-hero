@@ -32,9 +32,15 @@ export default function TriageSkeleton() {
                 <div className="h-4 bg-gray-700 rounded w-40"></div>
                 <div className="h-6 bg-gray-700 rounded w-full"></div>
                 <div className="flex justify-between">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="h-3 bg-gray-700 rounded w-8"></div>
-                  ))}
+                  <div className="flex gap-2">
+                    {[1, 2, 3].map((i) => (
+                      <div
+                        key={i}
+                        className="h-7 bg-gray-700 rounded-md w-8"
+                      ></div>
+                    ))}
+                  </div>
+                  <div className="h-7 bg-gray-700 rounded-md w-8"></div>
                 </div>
               </div>
 
@@ -42,9 +48,15 @@ export default function TriageSkeleton() {
                 <div className="h-4 bg-gray-700 rounded w-36"></div>
                 <div className="h-6 bg-gray-700 rounded w-full"></div>
                 <div className="flex justify-between">
-                  {[1, 2, 3].map((i) => (
-                    <div key={i} className="h-3 bg-gray-700 rounded w-8"></div>
-                  ))}
+                  <div className="flex gap-2">
+                    {[1, 2, 3].map((i) => (
+                      <div
+                        key={i}
+                        className="h-7 bg-gray-700 rounded-md w-8"
+                      ></div>
+                    ))}
+                  </div>
+                  <div className="h-7 bg-gray-700 rounded-md w-8"></div>
                 </div>
               </div>
             </div>
