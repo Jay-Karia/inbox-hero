@@ -43,7 +43,6 @@ export default function Triage({ handleStartSession }: TriageProps) {
     <div className="min-h-screen">
       <div className="max-w-7xl mx-auto p-6 space-y-8">
         <SessionsSummary sessions={sessions} />
-        <Separator className="my-8 bg-gray-800" />
         <EmailsSummary />
         <Separator className="my-8 bg-gray-800" />
 

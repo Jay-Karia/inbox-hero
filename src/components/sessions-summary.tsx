@@ -3,6 +3,7 @@ import { Session } from "../../generated/prisma";
 import { CardContent } from "./ui/card";
 import {formatDuration} from "@/lib/date";
 import {CardSpotlight} from "./ui/card-spotlight";
+import {Separator} from "./ui/separator";
 
 interface SessionsSummaryProps {
   sessions: Session[];
@@ -72,6 +73,7 @@ export default function SessionsSummary({ sessions }: SessionsSummaryProps) {
             <p>No sessions available.</p>
             <p className="mt-2">Start a new session to see summary.</p>
           </div>
+          <Separator className="my-8 bg-gray-800" />
         </>
       )}
     </div>

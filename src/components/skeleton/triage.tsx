@@ -9,7 +9,6 @@ export default function TriageSkeleton() {
           <div className="h-28 bg-gray-700 rounded-lg"></div>
           <div className="h-28 bg-gray-700 rounded-lg"></div>
         </div>
-        <Separator className="my-8 bg-gray-800" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="h-28 bg-gray-700 rounded-lg"></div>
           <div className="h-28 bg-gray-700 rounded-lg"></div>
