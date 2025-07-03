@@ -1,6 +1,6 @@
 "use client";
 
-import { FaInfoCircle } from "react-icons/fa";
+import { FaExclamationCircle } from "react-icons/fa";
 import { type Session as SessionType } from "../../generated/prisma";
 import Session from "./session";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
@@ -23,7 +23,7 @@ export default function AllSessions({ sessions }: AllSessionsProps) {
             : "No sessions available."}
           <Tooltip>
             <TooltipTrigger asChild>
-              <FaInfoCircle className="inline-block ml-2 text-gray-400 hover:text-white cursor-pointer" />
+              <FaExclamationCircle className="inline-block ml-2 text-gray-400 hover:text-white cursor-pointer" />
             </TooltipTrigger>
             <TooltipContent>
               <p>Only last 20 sessions will be stored.</p>
