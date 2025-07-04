@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   icons: [
     {
       rel: "icon",
-      url: "/logo-trans.png",
+      url: "/large-logo.png",
     },
   ],
 };
