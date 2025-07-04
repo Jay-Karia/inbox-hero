@@ -1,4 +1,10 @@
-export default function CleanPageLayout({
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Inbox Hero | Triage",
+};
+
+export default function TriagePageLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

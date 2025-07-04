@@ -1,3 +1,9 @@
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Inbox Hero | Dashboard",
+};
+
 export default function DashboardPageLayout({
   children,
 }: Readonly<{
