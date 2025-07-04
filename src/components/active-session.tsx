@@ -1,8 +1,10 @@
-import { settingsAtom } from "@/atoms";
-import { useAtomValue } from "jotai";
+import { settingsAtom, statsAtom } from "@/atoms";
+import { useAtom, useAtomValue } from "jotai";
 import { Button } from "./ui/button";
 import axios from "axios";
 import { useUser } from "@clerk/nextjs";
+import { Session, Stats } from "../../generated/prisma";
+import { updateStatsData } from "@/lib/utils";
 
 interface ActiveSessionProps {
   setIsSessionActive: (started: boolean) => void;
@@ -13,10 +15,12 @@ export default function ActiveSession({
 }: ActiveSessionProps) {
   const settings = useAtomValue(settingsAtom);
   const user = useUser().user;
+  const [currentStats, setStats] = useAtom(statsAtom);
 
   const handleEndSession = () => {
     // Mock session data
-    const sessionData = {
+    const sessionData: Session = {
+      id: 0, // Temporary ID for new session
       startTime: new Date(),
       endTime: new Date(),
       duration: 100,
@@ -25,7 +29,9 @@ export default function ActiveSession({
       skipped: 0,
       deleted: 3,
       target: 10,
-      userId: user?.id,
+      userId: user?.id || "",
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
 
     // Create the session
@@ -36,6 +42,24 @@ export default function ActiveSession({
       })
       .catch((error) => {
         console.error("Error saving session:", error);
+      });
+
+    // Update the stats
+    const statsData: Partial<Stats> = updateStatsData(
+      currentStats!,
+      sessionData,
+      user?.id
+    );
+
+    // Update the stats
+    axios
+      .patch("/api/stats", statsData)
+      .then((response) => {
+        console.log("Stats updated successfully:", response.data);
+        setStats(response.data);
+      })
+      .catch((error) => {
+        console.error("Error updating stats:", error);
       });
 
     setIsSessionActive(false);

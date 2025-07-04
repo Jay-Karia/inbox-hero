@@ -18,10 +18,10 @@ export const StatsSchema = z.object({
 export const UpdateStatsSchema = StatsSchema.partial().required({
   userId: true,
 }).extend({
-  totalProcessed: z.number().int().min(0).optional(),
-  processedToday: z.number().int().min(0).optional(),
-  averageTime: z.number().int().min(0).max(3600).optional(),
-  streak: z.number().int().min(0).max(365).optional(),
-  unreadEmails: z.number().int().min(0).max(100000).optional(),
-  dailyGoal: z.number().int().min(1).max(1000).optional(),
+  totalProcessed: z.number().int().min(0),
+  processedToday: z.number().int().min(0),
+  averageTime: z.number().int().min(0).max(3600),
+  streak: z.number().int().min(0).max(365),
+  unreadEmails: z.number().int().min(0).max(100000),
+  dailyGoal: z.number().int().min(1).max(1000),
 });

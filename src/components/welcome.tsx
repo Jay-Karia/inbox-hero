@@ -6,12 +6,13 @@ import StatsOverview from "./stats-overview";
 import LastSession from "./last-session";
 import axios from "axios";
 import NextSession from "./next-session";
-import {Stats} from "../../generated/prisma";
+import { useAtom } from "jotai";
+import { statsAtom } from "@/atoms";
 
 export default function Welcome() {
   const { user } = useUser();
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [stats, setStats] = useState<Stats | null>(null);
+  const [stats, setStats] = useAtom(statsAtom);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ export default function Welcome() {
     };
 
     fetchStats();
-  }, []);
+  }, [setStats]);
 
   const getGreeting = () => {
     const hour = currentTime.getHours();

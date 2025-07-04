@@ -2,10 +2,11 @@ import { FaInbox, FaMailBulk } from "react-icons/fa";
 import { Card, CardContent } from "./ui/card";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Stats } from "../../generated/prisma";
+import { useAtom } from "jotai";
+import { statsAtom } from "@/atoms";
 
 export default function EmailsSummary() {
-  const [stats, setStats] = useState<Stats | null>(null);
+  const [stats, setStats] = useAtom(statsAtom);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export default function EmailsSummary() {
     };
 
     fetchStats();
-  }, []);
+  }, [setStats]);
 
   if (loading) {
     return (
