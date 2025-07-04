@@ -1,6 +1,5 @@
 import { FaInbox, FaMailBulk } from "react-icons/fa";
-import { CardContent } from "./ui/card";
-import { CardSpotlight } from "./ui/card-spotlight";
+import { Card, CardContent } from "./ui/card";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Stats } from "../../generated/prisma";
@@ -38,7 +37,24 @@ export default function EmailsSummary() {
     <>
       {stats ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <CardSpotlight className="bg-gray-900 border-gray-800 p-0">
+          <Card className="bg-gray-900 border-gray-800 p-0 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-green-900/5 to-emerald-900/5">
+              <div
+                className="h-full relative"
+                style={{
+                  width: "100%",
+                  background: `linear-gradient(to right, rgba(34, 197, 94, ${Math.min(
+                    (stats.unreadEmails / 100) * 0.1,
+                    0.1
+                  )}), rgba(5, 150, 105, ${Math.min(
+                    (stats.unreadEmails / 100) * 0.1,
+                    0.1
+                  )}))`,
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse"></div>
+              </div>
+            </div>
             <CardContent className="p-4 text-center z-20 relative">
               <div className="flex justify-center mb-2">
                 <FaMailBulk className="h-5 w-5 text-green-400" />
@@ -48,20 +64,37 @@ export default function EmailsSummary() {
               </div>
               <div className="text-xs text-gray-400">Unread Emails</div>
             </CardContent>
-          </CardSpotlight>
+          </Card>
 
-          <CardSpotlight className="bg-gray-900 border-gray-800 p-0">
-            <CardContent className="p-4 text-center z-20 relative">
+          <Card className="bg-gray-900 border-gray-800 p-0 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-900/5 to-purple-900/5">
+              <div
+                className="h-full bg-gradient-to-r from-indigo-500/10 to-purple-500/10  relative"
+                style={{
+                  width: `${Math.min(
+                    (stats.processedToday / stats.dailyGoal) * 100,
+                    100
+                  )}%`,
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse"></div>
+              </div>
+            </div>
+
+            <CardContent className="p-4 text-center z-20 relative group">
               <div className="flex justify-center mb-2">
                 <FaInbox className="h-5 w-5 text-indigo-400" />
               </div>
-              <div className="text-xl font-bold text-white">
-                <span className="text-2xl">{stats.processedToday}</span>/
-                <span className="text-sm">{stats.dailyGoal}</span>
+              <div className="text-xl font-bold text-white relative">
+                <span className="text-2xl">{stats.processedToday}</span>
+                <span className="text-gray-500 mx-1">/</span>
+                <span className="text-sm text-gray-300">{stats.dailyGoal}</span>
               </div>
-              <div className="text-xs text-gray-400">Daily Goal</div>
+              <div className="text-xs text-gray-400 mt-1 relative">
+                Daily Goal
+              </div>
             </CardContent>
-          </CardSpotlight>
+          </Card>
         </div>
       ) : (
         <>

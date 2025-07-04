@@ -57,7 +57,7 @@ export default function StartSession(props: StartSessionProps) {
           <div className="flex items-center gap-2">
             <h4 className="text-white font-medium">Session Preview</h4>
             {props.settings.endlessMode && (
-              <Badge className="bg-blue-500/10 text-blue-300 border-blue-700/40">
+              <Badge className="bg-blue-500/10 text-blue-300 border-blue-700/40 hover:text-blue-900 hover:bg-blue-200">
                 <FaInfinity className="mr-1 h-3 w-3" />
                 Endless
               </Badge>
