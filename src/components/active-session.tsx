@@ -20,23 +20,24 @@ export default function ActiveSession({
   const settings = useAtomValue(settingsAtom);
   const user = useUser().user;
   const [currentStats, setStats] = useAtom(statsAtom);
-  const [startTime, setStartTime] = useState<Date>(new Date());
+
+  // Store the initial number of emails and start time
+  const [initialEmailCount, setInitialEmailCount] = useState(emails.length);
+  const [startTime, setStartTime] = useState<Date | null>(null);
+
   const [actionStats, setActionStats] = useState({
     archived: 0,
     skipped: 0,
     deleted: 0,
   });
 
-  // Store the initial number of emails at the start of the session
-  const [initialEmailCount, setInitialEmailCount] = useState(emails.length);
-
   useEffect(() => {
-    // Set the initial email count only once when the session starts
-    if (emails.length > 0 && initialEmailCount === 0) {
+    // Set the initial email count and start time only once when the session starts
+    if (!startTime) {
       setInitialEmailCount(emails.length);
+      setStartTime(new Date());
     }
-    setStartTime(new Date());
-  }, [emails, initialEmailCount]);
+  }, [emails, startTime]);
 
   // Calculate progress dynamically
   const processedEmails = initialEmailCount - emails.length;
@@ -55,14 +56,15 @@ export default function ActiveSession({
   };
 
   const handleEndSession = () => {
-    // Mock session data
+    if (!startTime) return;
+
+    // Calculate session duration
     const endTime = new Date();
     const duration = Math.round(
       (endTime.getTime() - startTime.getTime()) / 1000
     );
 
-    const sessionData: Session = {
-      id: 0, // Temporary ID for new session
+    const sessionData = {
       startTime,
       endTime,
       duration,
@@ -74,7 +76,7 @@ export default function ActiveSession({
       userId: user?.id || "",
       createdAt: new Date(),
       updatedAt: new Date(),
-    };
+    } as Session;
 
     // Create the session
     axios
@@ -93,7 +95,6 @@ export default function ActiveSession({
       user?.id
     );
 
-    // Update the stats
     axios
       .patch("/api/stats", statsData)
       .then((response) => {
@@ -130,10 +131,12 @@ export default function ActiveSession({
         {/* Timer */}
         <div className="mt-4">
           <p className="text-sm text-gray-400">Session Timer</p>
-          <Timer
-            durationMinutes={settings.duration}
-            onTimeUp={handleEndSession}
-          />
+          {startTime && (
+            <Timer
+              durationMinutes={settings.duration}
+              onTimeUp={handleEndSession}
+            />
+          )}
         </div>
       </div>
 
