@@ -3,6 +3,7 @@
 import { sessionActiveAtom } from "@/atoms";
 import Logo from "./logo";
 import SignIn from "./sign-in";
+import DailyGoalButton from "./ui/daily-goal";
 import {
   ResizableNavbar,
   NavBody,
@@ -16,6 +17,7 @@ import {
 import { useAtomValue } from "jotai";
 import { useState } from "react";
 import { GoHeartFill } from "react-icons/go";
+import { SignedIn } from "@clerk/nextjs"; // Import SignedIn to conditionally show the daily goal button
 
 export default function Navbar() {
   const navItems = [
@@ -47,6 +49,11 @@ export default function Navbar() {
           <Logo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-2">
+            {/* Daily Goal Button - only show when signed in */}
+            <SignedIn>
+              <DailyGoalButton />
+            </SignedIn>
+
             <NavbarButton variant="secondary">
               <SignIn />
             </NavbarButton>
@@ -82,6 +89,14 @@ export default function Navbar() {
               </a>
             ))}
             <div className="flex w-full flex-col gap-4">
+              {/* Add Daily Goal option to mobile menu too */}
+              <SignedIn>
+                <div className="flex items-center justify-between p-2 border rounded-md">
+                  <span>Daily Goal</span>
+                  <DailyGoalButton />
+                </div>
+              </SignedIn>
+
               <SignIn className="w-full" />
               <NavbarButton variant="donate">
                 <GoHeartFill className="inline mr-1" />
