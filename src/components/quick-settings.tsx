@@ -140,7 +140,7 @@ export default function QuickSettings(props: QuickSettingsProps) {
               onClick={() =>
                 props.handleSettingChange(
                   "duration",
-                  Math.max(0, props.settings.duration - 1)
+                  Math.max(1, props.settings.duration - 1)
                 )
               }
               disabled={props.settings.endlessMode}
@@ -216,7 +216,7 @@ export default function QuickSettings(props: QuickSettingsProps) {
               variant="outline"
               className="bg-green-500/10 border-green-500/30 text-green-400 hover:bg-green-500/20 hover:border-green-500/50"
               onClick={() =>
-                props.handleSettingChange("target", Math.max(0, props.settings.target - 1))
+                props.handleSettingChange("target", Math.max(1, props.settings.target - 1))
               }
               disabled={props.settings.endlessMode}
             >
