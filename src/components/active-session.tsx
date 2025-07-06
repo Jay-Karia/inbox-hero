@@ -2,7 +2,7 @@ import { Button } from "./ui/button";
 import { Progress } from "./ui/progress";
 import Timer from "./ui/timer";
 import { useAtom, useAtomValue } from "jotai";
-import { emailsAtom, settingsAtom } from "@/atoms";
+import { emailsAtom, settingsAtom, statsAtom } from "@/atoms";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useUser } from "@clerk/nextjs";
@@ -19,7 +19,7 @@ export default function ActiveSession({
   const [emails, setEmails] = useAtom(emailsAtom);
   const settings = useAtomValue(settingsAtom);
   const user = useUser().user;
-  const [currentStats, setStats] = useState<Stats | null>(null);
+  const [currentStats, setStats] = useAtom(statsAtom);
   const [startTime, setStartTime] = useState<Date>(new Date());
   const [actionStats, setActionStats] = useState({
     archived: 0,
@@ -88,7 +88,7 @@ export default function ActiveSession({
 
     // Update the stats
     const statsData: Partial<Stats> = updateStatsData(
-      currentStats!,
+      currentStats,
       sessionData,
       user?.id
     );

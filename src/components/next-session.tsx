@@ -135,8 +135,8 @@ export default function NextSession(props: StartSessionProps) {
         <CardDescription className="text-gray-300">
           You have{" "}
           <span className="text-white font-semibold">
-            {props.stats?.unreadEmails || 0} unread email
-            {(props.stats?.unreadEmails || 0) !== 1 ? "s" : ""}
+            {props.stats?.unreadEmails} unread email
+            {(props.stats?.unreadEmails) !== 1 ? "s" : ""}
           </span>{" "}
           waiting to be triaged.
         </CardDescription>
@@ -145,8 +145,8 @@ export default function NextSession(props: StartSessionProps) {
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
             <span className="text-gray-400">
-              Daily Goal - <b>{props.stats?.processedToday || 0}</b>/
-              {props.stats?.dailyGoal || 50}
+              Daily Goal - <b>{props.stats?.processedToday}</b>/
+              {props.stats?.dailyGoal}
             </span>
             <span className="text-white">{mockProgress}%</span>
           </div>

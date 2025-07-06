@@ -34,9 +34,11 @@ app.patch("/", clerkMiddleware(), async (c) => {
 
   try {
     const body = await c.req.json();
-    const parsedBody = UpdateStatsSchema.safeParse(body);
+    // Convert strings to date
+    body.updatedAt = new Date()
+    body.createdAt = new Date(body.createdAt)
 
-    console.log(parsedBody.error);
+    const parsedBody = UpdateStatsSchema.safeParse(body);
 
     // Validate the request body
     if (!parsedBody.success) {

@@ -7,38 +7,25 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function updateStatsData(
-  currentStats: Stats,
+  currentStats: Stats | null,
   sessionData: Session,
   userId: string | undefined
-): Partial<Stats> {
-  const statsData: Partial<Stats> = {
-    userId,
-    dailyGoal: currentStats?.dailyGoal || 0,
-    achievedInboxZero: currentStats?.achievedInboxZero || false,
-    unreadEmails: currentStats?.unreadEmails || 0,
-    streak: currentStats?.streak || 0,
-  };
+): Stats {
   if (!currentStats) {
-    statsData.totalProcessed = sessionData.emailsProcessed;
-    statsData.processedToday = sessionData.emailsProcessed;
-    statsData.averageTime = sessionData.duration === 0 ? 0 : parseInt((sessionData.duration / sessionData.emailsProcessed).toFixed(0));
-  } else {
-    statsData.totalProcessed =
-      currentStats.totalProcessed + sessionData.emailsProcessed;
-    statsData.processedToday =
-      currentStats.processedToday + sessionData.emailsProcessed;
-    statsData.averageTime = parseInt(
-      (
-        (currentStats.averageTime * currentStats.totalProcessed +
-          (sessionData.duration / sessionData.emailsProcessed) *
-            sessionData.emailsProcessed) /
-        (currentStats.totalProcessed + sessionData.emailsProcessed)
-      ).toFixed(0)
-    );
-    statsData.dailyGoal = currentStats.dailyGoal;
-    statsData.unreadEmails = currentStats.unreadEmails;
-    statsData.streak = currentStats.streak;
+    throw new Error("Current stats are required to update stats data.");
   }
+
+  const statsData: Stats = { ...currentStats };
+  statsData.userId = userId || "";
+  statsData.processedToday =
+    currentStats.processedToday + sessionData.emailsProcessed;
+  statsData.totalProcessed =
+    currentStats.totalProcessed + sessionData.emailsProcessed;
+  statsData.averageTime = Math.round(
+    (currentStats.averageTime * currentStats.totalProcessed +
+      sessionData.duration) /
+      (currentStats.totalProcessed + 1)
+  );
 
   return statsData;
 }
