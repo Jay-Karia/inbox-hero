@@ -1,5 +1,6 @@
 "use client";
 
+import { sessionActiveAtom } from "@/atoms";
 import Logo from "./logo";
 import SignIn from "./sign-in";
 import {
@@ -12,6 +13,7 @@ import {
   MobileNavMenu,
   NavbarButton,
 } from "@/components/ui/resizable-navbar";
+import { useAtomValue } from "jotai";
 import { useState } from "react";
 import { GoHeartFill } from "react-icons/go";
 
@@ -32,6 +34,10 @@ export default function Navbar() {
   ];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Remove navbar when session is active
+  const isSessionActive = useAtomValue(sessionActiveAtom);
+  if (isSessionActive) return;
 
   return (
     <div className="relative w-full">
