@@ -21,7 +21,7 @@ export function updateStatsData(
     currentStats.processedToday + sessionData.emailsProcessed;
   statsData.totalProcessed =
     currentStats.totalProcessed + sessionData.emailsProcessed;
-  statsData.b = Math.round(
+  statsData.averageTime = Math.round(
     (currentStats.averageTime * currentStats.totalProcessed +
       sessionData.duration) /
       (currentStats.totalProcessed + sessionData.emailsProcessed)
