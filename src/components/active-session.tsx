@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useUser } from "@clerk/nextjs";
 import { Session, Stats } from "../../generated/prisma";
-import { updateStatsData } from "@/lib/utils";
+import { updateStatsData, updateStreak } from "@/lib/utils";
 
 interface ActiveSessionProps {
   setIsSessionActive: (started: boolean) => void;
@@ -89,11 +89,14 @@ export default function ActiveSession({
       });
 
     // Update the stats
-    const statsData: Partial<Stats> = updateStatsData(
+    let statsData: Stats = updateStatsData(
       currentStats,
       sessionData,
       user?.id
     );
+
+    // Update streak
+    statsData = updateStreak(statsData);
 
     axios
       .patch("/api/stats", statsData)

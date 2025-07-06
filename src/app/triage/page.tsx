@@ -32,4 +32,3 @@ export default function TriagePage() {
     </div>
   );
 }
-// TODO: check for streaks

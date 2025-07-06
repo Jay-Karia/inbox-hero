@@ -27,6 +27,7 @@ model Stats {
   processedToday    Int
   averageTime       Int
   streak            Int
+  lastActive        DateTime? @default(now())
   unreadEmails      Int
   dailyGoal         Int
   achievedInboxZero Boolean   @default(false)

@@ -29,9 +29,9 @@ export default function DailyGoalButton() {
     try {
       const statsData = { ...stats, dailyGoal: goal };
       const response = await axios.patch("/api/stats", statsData);
-
       setStats(response.data);
       setIsOpen(false);
+      setIsError(false);
     } catch (error) {
       console.error("Error updating daily goal:", error);
       setIsError(true);
