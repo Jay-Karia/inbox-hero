@@ -20,6 +20,7 @@ export default function DailyGoalButton() {
   const [isOpen, setIsOpen] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
   const { user } = useUser();
+  const [isError, setIsError] = useState(false)
 
   const handleSaveGoal = async () => {
     if (!user) return;
@@ -33,6 +34,7 @@ export default function DailyGoalButton() {
       setIsOpen(false);
     } catch (error) {
       console.error("Error updating daily goal:", error);
+      setIsError(true);
     } finally {
       setIsUpdating(false);
     }
@@ -63,6 +65,11 @@ export default function DailyGoalButton() {
             />
             <span className="text-sm text-gray-400">emails</span>
           </div>
+          {isError && (
+            <div className="text-sm text-red-500">
+              Failed to update goal. Please try again.
+            </div>
+          )}
           <div className="flex justify-end">
             <Button size="sm" onClick={handleSaveGoal} disabled={isUpdating}>
               {isUpdating ? "Saving..." : "Save"}
