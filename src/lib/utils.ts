@@ -89,6 +89,4 @@ export function updateStreak(stats: Stats): Stats {
       lastActive: now,
     };
   }
-
-  return { ...stats, streak: 1 };
 }
