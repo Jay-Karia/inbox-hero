@@ -76,6 +76,4 @@ app.patch("/", clerkMiddleware(), async (c) => {
   }
 });
 
-// TODO: check for streak
-
 export default app;

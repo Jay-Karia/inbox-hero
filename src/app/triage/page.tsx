@@ -32,3 +32,6 @@ export default function TriagePage() {
     </div>
   );
 }
+
+// TODO: reset processed today every day
+// TODO: check for streaks
