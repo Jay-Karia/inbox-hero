@@ -36,6 +36,8 @@ app.patch("/", clerkMiddleware(), async (c) => {
     const body = await c.req.json();
     const parsedBody = UpdateStatsSchema.safeParse(body);
 
+    console.log(parsedBody.error);
+
     // Validate the request body
     if (!parsedBody.success) {
       return c.json(

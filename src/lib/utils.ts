@@ -21,7 +21,7 @@ export function updateStatsData(
   if (!currentStats) {
     statsData.totalProcessed = sessionData.emailsProcessed;
     statsData.processedToday = sessionData.emailsProcessed;
-    statsData.averageTime = sessionData.duration / sessionData.emailsProcessed;
+    statsData.averageTime = sessionData.duration === 0 ? 0 : parseInt((sessionData.duration / sessionData.emailsProcessed).toFixed(0));
   } else {
     statsData.totalProcessed =
       currentStats.totalProcessed + sessionData.emailsProcessed;

@@ -2,7 +2,7 @@ import { atomWithStorage } from "jotai/utils";
 import { Session, Stats } from "../../generated/prisma";
 import { DEFAULT_SETTINGS, mockEmails } from "@/constants";
 import { Settings } from "@/types/settings";
-import {Email} from "@/types/emails";
+import {Email} from "@/types/email";
 
 export const sessionsAtom = atomWithStorage<Session[]>("sessions", []);
 export const settingsAtom = atomWithStorage<Settings>(

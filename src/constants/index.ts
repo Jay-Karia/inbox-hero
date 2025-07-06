@@ -1,4 +1,4 @@
-import {Email} from "@/types/emails";
+import {Email} from "@/types/email";
 import { Settings } from "@/types/settings";
 
 export const DEFAULT_SETTINGS: Settings = {

@@ -23,5 +23,5 @@ export const UpdateStatsSchema = StatsSchema.partial().required({
   averageTime: z.number().int().min(0).max(3600),
   streak: z.number().int().min(0).max(365),
   unreadEmails: z.number().int().min(0).max(100000),
-  dailyGoal: z.number().int().min(1).max(1000),
+  dailyGoal: z.number().int().min(0).max(1000),
 });
