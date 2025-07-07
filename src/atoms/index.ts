@@ -17,6 +17,5 @@ export const sessionActiveAtom = atomWithStorage<boolean>(
 export const statsAtom = atomWithStorage<Stats | null>("stats", null);
 export const emailsAtom = atomWithStorage<Email[]>("emails", mockEmails)
 export const afterSessionPopUpsAtom = atomWithStorage<PopUps>("afterSessionPopUps", {
-  isOpen: false,
   openedToday: false,
 })

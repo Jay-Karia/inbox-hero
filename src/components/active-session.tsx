@@ -114,7 +114,6 @@ export default function ActiveSession({
 
       // Set pop-ups for daily goal and streak updates
       setAfterSessionPopUps({
-        isOpen: true,
         dailyGoal: isDailyGoalAchieved,
         streak: streakUpdated,
         openedToday: false,
