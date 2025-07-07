@@ -13,6 +13,7 @@ import axios from "axios";
 import { useUser } from "@clerk/nextjs";
 import { Session, Stats } from "../../generated/prisma";
 import { updateStatsData, updateStreak } from "@/lib/utils";
+import { toast } from "sonner";
 
 interface ActiveSessionProps {
   setIsSessionActive: (started: boolean) => void;
@@ -115,8 +116,20 @@ export default function ActiveSession({
       .post("/api/session", sessionData)
       .then((response) => {
         console.log("Session saved successfully:", response.data);
+        toast("Session saved successfully", {
+          style: {
+            backgroundColor: "#16a34a",
+            color: "#ffffff",
+          },
+        });
       })
       .catch((error) => {
+        toast("Could not save session", {
+          style: {
+            backgroundColor: "#dc2626",
+            color: "#ffffff",
+          },
+        });
         console.error("Error saving session:", error);
       });
 
@@ -126,8 +139,20 @@ export default function ActiveSession({
       .then((response) => {
         console.log("Stats updated successfully:", response.data);
         setStats(response.data);
+        toast("Stats updated successfully", {
+          style: {
+            backgroundColor: "#16a34a",
+            color: "#ffffff",
+          },
+        });
       })
       .catch((error) => {
+        toast("Could not update stats", {
+          style: {
+            backgroundColor: "#dc2626",
+            color: "#ffffff",
+          },
+        });
         console.error("Error updating stats:", error);
       });
 

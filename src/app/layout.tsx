@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import { dark } from "@clerk/themes";
 import localFont from "next/font/local";
 import { JotaiProvider } from "@/providers/jotai";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Inbox Hero",
@@ -36,6 +37,7 @@ export default function RootLayout({
       <JotaiProvider>
         <html lang="en" className="dark">
           <body className={`${robotoCondensed.className} antialiased h-full`}>
+            <Toaster />
             <Navbar />
             {children}
           </body>
