@@ -108,18 +108,17 @@ export default function ActiveSession({
     const openedToday = afterSessionPopUps.openedToday;
 
     if (!openedToday) {
-      const isDailyGoalAchieved = statsData.processedToday >= statsData.dailyGoal;
+      const isDailyGoalAchieved =
+        statsData.processedToday >= statsData.dailyGoal;
       const streakUpdated = statsData.streak > previousStreak;
 
       // Set pop-ups for daily goal and streak updates
-      if (isDailyGoalAchieved || streakUpdated) {
-        setAfterSessionPopUps({
-          isOpen: true,
-          dailyGoal: isDailyGoalAchieved,
-          streak: streakUpdated,
-          openedToday: true,
-        });
-      }
+      setAfterSessionPopUps({
+        isOpen: true,
+        dailyGoal: isDailyGoalAchieved,
+        streak: streakUpdated,
+        openedToday: false,
+      });
     }
 
     axios
