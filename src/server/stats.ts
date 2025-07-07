@@ -37,6 +37,7 @@ app.patch("/", clerkMiddleware(), async (c) => {
     // Convert strings to date
     body.updatedAt = new Date()
     body.createdAt = new Date(body.createdAt)
+    body.lastActive = new Date(body.lastActive)
 
     const parsedBody = UpdateStatsSchema.safeParse(body);
 
@@ -66,6 +67,7 @@ app.patch("/", clerkMiddleware(), async (c) => {
         unreadEmails: parsedData.unreadEmails,
         dailyGoal: parsedData.dailyGoal,
         achievedInboxZero: parsedData.achievedInboxZero,
+        lastActive: parsedData.lastActive,
       },
     });
 

@@ -33,10 +33,7 @@ export function updateStatsData(
 export function updateStreak(stats: Stats): Stats {
   const now = new Date();
   const todayDate = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const lastDate = stats.lastActive ? new Date(stats.lastActive) : null;
-  const lastActiveDate = lastDate
-    ? new Date(lastDate.getFullYear(), lastDate.getMonth(), lastDate.getDate())
-    : null;
+  const lastActive = stats.lastActive;
 
   // Default values if stats doesn't have streak data
   const currentStreak = stats.streak || 0;
@@ -46,34 +43,45 @@ export function updateStreak(stats: Stats): Stats {
   const goalAchieved = stats.processedToday >= dailyGoal;
 
   if (!goalAchieved) {
-    // If goal not achieved, just update lastStreakDate and return
+    // If goal not achieved, just update lastActive and return
     return {
       ...stats,
       lastActive: now,
     };
   }
 
-  // If there's no lastActiveDate or it's the first time achieving the goal
-  if (!lastActiveDate) {
+  // If there's no lastActive date, this is the first achievement
+  if (!lastActive) {
     return {
       ...stats,
-      streak: 1,
+      streak: 0, // Start streak at 0
       lastActive: now,
     };
   }
 
-  // Calculate the difference in days
-  const daysDifference = Math.floor(
-    (todayDate.getTime() - lastActiveDate.getTime()) / (1000 * 3600 * 24)
+  // Convert lastActive to date components to properly check calendar days
+  const lastActiveDate = new Date(lastActive);
+  const lastDay = new Date(
+    lastActiveDate.getFullYear(),
+    lastActiveDate.getMonth(),
+    lastActiveDate.getDate()
   );
 
-  if (daysDifference === 0) {
-    // Same day, already counted in streak, just update date
+  // Check if it's the same day
+  const isSameDay = todayDate.getTime() === lastDay.getTime();
+
+  // Check if it's the next day (consecutive)
+  const nextDay = new Date(lastDay);
+  nextDay.setDate(lastDay.getDate() + 1);
+  const isConsecutiveDay = todayDate.getTime() === nextDay.getTime();
+
+  if (isSameDay) {
+    // Same day, already counted in streak, just update lastActive
     return {
       ...stats,
       lastActive: now,
     };
-  } else if (daysDifference === 1) {
+  } else if (isConsecutiveDay) {
     // Consecutive day, increment streak
     const newStreak = currentStreak + 1;
     return {
@@ -82,10 +90,10 @@ export function updateStreak(stats: Stats): Stats {
       lastActive: now,
     };
   } else {
-    // Streak broken, start new streak
+    // Not consecutive, start new streak
     return {
       ...stats,
-      streak: 1,
+      streak: 0, // Reset to 0 as requested
       lastActive: now,
     };
   }

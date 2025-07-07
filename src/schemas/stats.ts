@@ -13,6 +13,7 @@ export const StatsSchema = z.object({
   achievedInboxZero: z.boolean(),
   createdAt: z.date().nullable(),
   updatedAt: z.date().nullable(),
+  lastActive: z.date().nullable(),
 }) satisfies z.ZodType<Stats>;
 
 export const UpdateStatsSchema = StatsSchema.partial().required({
@@ -24,4 +25,5 @@ export const UpdateStatsSchema = StatsSchema.partial().required({
   streak: z.number().int().min(0).max(365),
   unreadEmails: z.number().int().min(0).max(100000),
   dailyGoal: z.number().int().min(0).max(1000),
+  lastActive: z.date(),
 });

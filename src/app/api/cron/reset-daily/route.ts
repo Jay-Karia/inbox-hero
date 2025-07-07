@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
       status: 401,
     });
   }
-  
+
   try {
     // Reset processedToday to 0 for all users
     await prisma.stats.updateMany({
