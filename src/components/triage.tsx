@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useAtom } from "jotai";
-import { sessionsAtom, settingsAtom } from "@/atoms";
+import { useAtom, useAtomValue } from "jotai";
+import { afterSessionPopUpsAtom, sessionsAtom, settingsAtom } from "@/atoms";
 import QuickSettings from "./quick-settings";
 import { Settings } from "@/types/settings";
 import StartSession from "./start-session";
@@ -20,6 +20,7 @@ export default function Triage({ handleStartSession }: TriageProps) {
   const [sessions, setSessions] = useAtom(sessionsAtom);
   const [settings, setSettings] = useAtom(settingsAtom);
   const [isLoading, setIsLoading] = useState(true);
+  const afterSessionPopUps = useAtomValue(afterSessionPopUpsAtom);
 
   const handleSettingChange = (key: keyof Settings, value: unknown) => {
     setSettings((prev) => ({ ...prev, [key]: value }));
@@ -43,7 +44,8 @@ export default function Triage({ handleStartSession }: TriageProps) {
   return (
     <div className="min-h-screen">
       <div className="max-w-7xl mx-auto p-6 space-y-8">
-        <SessionsSummary sessions={sessions} isLoading={isLoading}/>
+        {JSON.stringify(afterSessionPopUps)}
+        <SessionsSummary sessions={sessions} isLoading={isLoading} />
         <EmailsSummary />
         <Separator className="my-8 bg-gray-800" />
 

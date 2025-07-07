@@ -3,6 +3,7 @@ import { Session, Stats } from "../../generated/prisma";
 import { DEFAULT_SETTINGS, mockEmails } from "@/constants";
 import { Settings } from "@/types/settings";
 import {Email} from "@/types/email";
+import {PopUps} from "@/types/popups";
 
 export const sessionsAtom = atomWithStorage<Session[]>("sessions", []);
 export const settingsAtom = atomWithStorage<Settings>(
@@ -15,3 +16,7 @@ export const sessionActiveAtom = atomWithStorage<boolean>(
 );
 export const statsAtom = atomWithStorage<Stats | null>("stats", null);
 export const emailsAtom = atomWithStorage<Email[]>("emails", mockEmails)
+export const afterSessionPopUpsAtom = atomWithStorage<PopUps>("afterSessionPopUps", {
+  isOpen: false,
+  openedToday: false,
+})

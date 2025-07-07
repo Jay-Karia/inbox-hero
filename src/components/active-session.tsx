@@ -2,7 +2,12 @@ import { Button } from "./ui/button";
 import { Progress } from "./ui/progress";
 import Timer from "./ui/timer";
 import { useAtom, useAtomValue } from "jotai";
-import { emailsAtom, settingsAtom, statsAtom } from "@/atoms";
+import {
+  afterSessionPopUpsAtom,
+  emailsAtom,
+  settingsAtom,
+  statsAtom,
+} from "@/atoms";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useUser } from "@clerk/nextjs";
@@ -20,6 +25,9 @@ export default function ActiveSession({
   const settings = useAtomValue(settingsAtom);
   const user = useUser().user;
   const [currentStats, setStats] = useAtom(statsAtom);
+  const [afterSessionPopUps, setAfterSessionPopUps] = useAtom(
+    afterSessionPopUpsAtom
+  );
 
   // Store the initial number of emails and start time
   const [initialEmailCount, setInitialEmailCount] = useState(emails.length);
@@ -89,14 +97,30 @@ export default function ActiveSession({
       });
 
     // Update the stats
-    let statsData: Stats = updateStatsData(
-      currentStats,
-      sessionData,
-      user?.id
-    );
+    let statsData: Stats = updateStatsData(currentStats, sessionData, user?.id);
+
+    const previousStreak = statsData.streak;
 
     // Update streak
     statsData = updateStreak(statsData);
+
+    // Check for pop-ups
+    const openedToday = afterSessionPopUps.openedToday;
+
+    if (!openedToday) {
+      const isDailyGoalAchieved = statsData.processedToday >= statsData.dailyGoal;
+      const streakUpdated = statsData.streak > previousStreak;
+
+      // Set pop-ups for daily goal and streak updates
+      if (isDailyGoalAchieved || streakUpdated) {
+        setAfterSessionPopUps({
+          isOpen: true,
+          dailyGoal: isDailyGoalAchieved,
+          streak: streakUpdated,
+          openedToday: true,
+        });
+      }
+    }
 
     axios
       .patch("/api/stats", statsData)
