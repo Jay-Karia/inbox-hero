@@ -13,6 +13,7 @@ import { statsAtom } from "@/atoms";
 import { useAtom } from "jotai";
 import axios from "axios";
 import { useUser } from "@clerk/nextjs";
+import {toast} from "sonner";
 
 export default function DailyGoalButton() {
   const [stats, setStats] = useAtom(statsAtom);
@@ -20,7 +21,7 @@ export default function DailyGoalButton() {
   const [isOpen, setIsOpen] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
   const { user } = useUser();
-  const [isError, setIsError] = useState(false)
+  const [isError, setIsError] = useState(false);
 
   const handleSaveGoal = async () => {
     if (!user) return;
@@ -32,6 +33,12 @@ export default function DailyGoalButton() {
       setStats(response.data);
       setIsOpen(false);
       setIsError(false);
+      toast("Daily goal updated successfully", {
+        style: {
+          backgroundColor: "#16a34a",
+          color: "#ffffff",
+        },
+      });
     } catch (error) {
       console.error("Error updating daily goal:", error);
       setIsError(true);

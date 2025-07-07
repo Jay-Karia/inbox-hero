@@ -29,6 +29,7 @@ export default function ActiveSession({
   const [afterSessionPopUps, setAfterSessionPopUps] = useAtom(
     afterSessionPopUpsAtom
   );
+  const [loading, setLoading] = useState(false);
 
   // Store the initial number of emails and start time
   const [initialEmailCount, setInitialEmailCount] = useState(emails.length);
@@ -64,8 +65,11 @@ export default function ActiveSession({
     }));
   };
 
-  const handleEndSession = () => {
+  const handleEndSession = async () => {
     if (!startTime) return;
+
+    // Set loading state
+    setLoading(true);
 
     // Calculate session duration
     const endTime = new Date();
@@ -111,51 +115,53 @@ export default function ActiveSession({
       });
     }
 
+    // Check for any api errors
+    let isError = false;
+
     // Create the session
-    axios
-      .post("/api/session", sessionData)
-      .then((response) => {
-        console.log("Session saved successfully:", response.data);
-        toast("Session saved successfully", {
-          style: {
-            backgroundColor: "#16a34a",
-            color: "#ffffff",
-          },
-        });
-      })
-      .catch((error) => {
-        toast("Could not save session", {
-          style: {
-            backgroundColor: "#dc2626",
-            color: "#ffffff",
-          },
-        });
-        console.error("Error saving session:", error);
+    await axios.post("/api/session", sessionData).catch((error) => {
+      toast("Could not save session", {
+        description: "Stats will not be updated either.",
+        style: {
+          backgroundColor: "#dc2626",
+          color: "#ffffff",
+        },
       });
+      isError = true;
+      console.error("Error saving session:", error);
+    });
 
-    // Update the stats
-    axios
-      .patch("/api/stats", statsData)
-      .then((response) => {
-        console.log("Stats updated successfully:", response.data);
-        setStats(response.data);
-        toast("Stats updated successfully", {
-          style: {
-            backgroundColor: "#16a34a",
-            color: "#ffffff",
-          },
+    // Do not update stats if there was an error saving the session
+    if (!isError) {
+      // Update the stats
+      await axios
+        .patch("/api/stats", statsData)
+        .then((response) => {
+          setStats(response.data);
+        })
+        .catch((error) => {
+          toast("Could not update stats", {
+            style: {
+              backgroundColor: "#dc2626",
+              color: "#ffffff",
+            },
+          });
+          isError = true;
+          console.error("Error updating stats:", error);
         });
-      })
-      .catch((error) => {
-        toast("Could not update stats", {
-          style: {
-            backgroundColor: "#dc2626",
-            color: "#ffffff",
-          },
-        });
-        console.error("Error updating stats:", error);
+    }
+
+    // Show the toast if no error occurred
+    if (!isError) {
+      toast("Session and stats updated successfully", {
+        style: {
+          backgroundColor: "#16a34a",
+          color: "#ffffff",
+        },
       });
+    }
 
+    setLoading(false);
     setIsSessionActive(false);
   };
 
@@ -250,10 +256,13 @@ export default function ActiveSession({
 
       {/* End Session Button */}
       <Button
-        onClick={handleEndSession}
+        onClick={() => {
+          handleEndSession();
+        }}
+        disabled={loading}
         className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-md font-medium shadow-lg hover:from-red-600 hover:to-red-700 hover:shadow-xl transition-all duration-200 transform hover:scale-105"
       >
-        End Session
+        {loading ? "Ending Session..." : "End Session"}
       </Button>
     </div>
   );
