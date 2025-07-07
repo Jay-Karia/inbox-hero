@@ -15,11 +15,16 @@ export default function PopUps() {
   const [afterSessionPopUps, setAfterSessionPopUps] = useAtom(
     afterSessionPopUpsAtom
   );
-
   const handleClose = (type: "streak" | "dailyGoal") => {
+    const isAllPopUpsClosed = !Object.values({
+      ...afterSessionPopUps,
+      [type]: false,
+    }).some(value => typeof value === 'boolean' && value);
+    
     setAfterSessionPopUps((prev) => ({
       ...prev,
-      [type]: undefined,
+      openedToday: isAllPopUpsClosed,
+      [type]: false,
     }));
   };
 
@@ -32,13 +37,16 @@ export default function PopUps() {
             <DialogHeader>
               <DialogTitle>🎉 Daily Goal Achieved!</DialogTitle>
               <DialogDescription>
-                Congratulations! You&apos;ve successfully completed your daily goal.
-                Keep up the great work!
+                Congratulations! You&apos;ve successfully completed your daily
+                goal. Keep up the great work!
               </DialogDescription>
             </DialogHeader>
             <DialogFooter>
               <DialogClose asChild>
-                <Button variant="outline" onClick={() => handleClose("dailyGoal")}>
+                <Button
+                  variant="outline"
+                  onClick={() => handleClose("dailyGoal")}
+                >
                   Awesome!
                 </Button>
               </DialogClose>

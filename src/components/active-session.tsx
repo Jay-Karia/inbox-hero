@@ -86,16 +86,6 @@ export default function ActiveSession({
       updatedAt: new Date(),
     } as Session;
 
-    // Create the session
-    axios
-      .post("/api/session", sessionData)
-      .then((response) => {
-        console.log("Session saved successfully:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error saving session:", error);
-      });
-
     // Update the stats
     let statsData: Stats = updateStatsData(currentStats, sessionData, user?.id);
 
@@ -120,6 +110,17 @@ export default function ActiveSession({
       });
     }
 
+    // Create the session
+    axios
+      .post("/api/session", sessionData)
+      .then((response) => {
+        console.log("Session saved successfully:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error saving session:", error);
+      });
+
+    // Update the stats
     axios
       .patch("/api/stats", statsData)
       .then((response) => {
