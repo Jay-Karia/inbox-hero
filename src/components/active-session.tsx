@@ -256,9 +256,7 @@ export default function ActiveSession({
 
       {/* End Session Button */}
       <Button
-        onClick={() => {
-          handleEndSession();
-        }}
+        onClick={handleEndSession}
         disabled={loading}
         className="px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-md font-medium shadow-lg hover:from-red-600 hover:to-red-700 hover:shadow-xl transition-all duration-200 transform hover:scale-105"
       >

@@ -93,7 +93,7 @@ export function updateStreak(stats: Stats): Stats {
     // Not consecutive, start new streak
     return {
       ...stats,
-      streak: 0, // Reset to 0 as requested
+      streak: 1, // Reset to 0 as requested
       lastActive: now,
     };
   }
