@@ -59,7 +59,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: `Daily stats reset successfully. Reset ${streakResetCount} streaks.`,
+      message: `Daily stats reset successfully. Reset ${streakResetCount} streaks. After session pop ups reset.`,
     });
   } catch (error) {
     console.error("Error in daily reset cron job:", error);
