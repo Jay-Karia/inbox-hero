@@ -13,10 +13,12 @@ app.get("/", async (c) => {
     return c.json({ error: "Unauthorized" }, 401);
   }
 
-  const accessToken = await clerk.users.getUserOauthAccessToken(
+  const token = await clerk.users.getUserOauthAccessToken(
     userId,
     "oauth_google"
   );
+
+  const accessToken = token[0].token;
 
   if (!accessToken) {
     return c.json({ error: "No access token found" }, 403);
@@ -27,7 +29,7 @@ app.get("/", async (c) => {
     "https://gmail.googleapis.com/gmail/v1/users/me/messages?maxResults=5",
     {
       headers: {
-        Authorization: `Bearer ${accessToken[0].token}`,
+        Authorization: `Bearer ${accessToken}`,
       },
     }
   );
@@ -45,7 +47,7 @@ app.get("/", async (c) => {
         `https://gmail.googleapis.com/gmail/v1/users/me/messages/${msg.id}?format=metadata`,
         {
           headers: {
-            Authorization: `Bearer ${accessToken[0].token}`,
+            Authorization: `Bearer ${accessToken}`,
           },
         }
       );
